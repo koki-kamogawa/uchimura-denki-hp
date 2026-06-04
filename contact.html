@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>お問い合わせ｜内村電機工務店</title>
+<meta name="description" content="内村電機工務店へのお問い合わせ。工事のご相談・採用のご応募はこちらから。お電話 0853-63-3456、またはフォームよりお気軽にご連絡ください。" />
+<link rel="stylesheet" href="style.css?v=14" />
+<link rel="stylesheet" href="pages.css?v=14" />
+<link rel="stylesheet" href="scroll.css?v=3" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__logo">内村<b>電機</b>工務店</div>
+  <button class="topbar__burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+</header>
+
+<div class="layout">
+
+  <nav class="sidenav">
+    <a href="index.html" class="sidenav__logo">
+      <span class="sidenav__logo-ja">内村<b>電機</b>工務店</span>
+      <span class="sidenav__logo-en">Uchimura Denki · Since 1934</span>
+    </a>
+    <div class="sidenav__menu">
+      <a class="sidenav__item" href="index.html"><span>ホーム</span><span class="no">00</span></a>
+      <a class="sidenav__item" href="about.html"><span>私たちについて</span><span class="no">01</span></a>
+      <a class="sidenav__item" href="business.html"><span>事業内容</span><span class="no">02</span></a>
+      <a class="sidenav__item" href="works.html"><span>施工実績</span><span class="no">03</span></a>
+      <a class="sidenav__item" href="network.html"><span>拠点ネットワーク</span><span class="no">04</span></a>
+      <a class="sidenav__item" href="recruit.html"><span>採用情報</span><span class="no">05</span></a>
+      <a class="sidenav__item" href="quality.html"><span>品質・ISO</span><span class="no">06</span></a>
+      <a class="sidenav__item is-current" href="contact.html"><span>お問い合わせ</span><span class="no">07</span></a>
+    </div>
+    <div class="sidenav__spacer"></div>
+    <a href="recruit.html" class="sidenav__cta">採用情報を見る</a>
+    <div class="sidenav__tel">採用・お問い合わせ<b>0853-63-3456</b></div>
+  </nav>
+
+  <main class="main">
+
+    <section class="page-hero">
+      <span class="page-hero__en">Contact</span>
+      <img class="page-hero__float f1" src="assets/lamp-1.png" alt="" />
+      <img class="page-hero__float f2" src="assets/worker-3.png" alt="" />
+      <div class="page-hero__inner">
+        <div class="crumbs"><a href="index.html">HOME</a><span>/</span>お問い合わせ</div>
+        <p class="page-hero__label">Contact</p>
+        <h1 class="page-hero__title">まずは、お気軽に<br />お声がけください<span class="dot">。</span></h1>
+        <p class="page-hero__lead">工事のご相談も、採用のご応募も、「ちょっと聞いてみたい」も大歓迎です。島根のことなら、電気のことなら、私たちにお任せください。</p>
+      </div>
+    </section>
+
+    <section class="section reveal" style="background:var(--warm-white)">
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#F7F3EC"/></svg></div>
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <div class="contact-info__block">
+            <div class="contact-info__h">お電話でのお問い合わせ</div>
+            <div class="contact-info__tel">0853-63-3456</div>
+            <div class="contact-info__note">受付時間：平日 8:00〜17:00（土日祝を除く）</div>
+          </div>
+          <div class="contact-info__block">
+            <div class="contact-info__h">所在地</div>
+            <div class="contact-info__addr">内村電機工務店 本社<br />島根県出雲市平田町</div>
+          </div>
+          <div class="contact-info__block">
+            <div class="contact-info__h">お問い合わせ内容</div>
+            <div class="contact-info__addr">電気・送電・配電・通信・水道・空調工事のご相談／採用のご応募／お見積もり／その他ご質問</div>
+          </div>
+        </div>
+
+        <form class="form" onsubmit="return false;">
+          <div class="form__field">
+            <label>お名前<span class="req">必須</span></label>
+            <input type="text" name="name" placeholder="山田 太郎" />
+          </div>
+          <div class="form__field">
+            <label>会社名・団体名</label>
+            <input type="text" name="company" placeholder="株式会社○○" />
+          </div>
+          <div class="form__field">
+            <label>メールアドレス<span class="req">必須</span></label>
+            <input type="email" name="email" placeholder="example@uchimura.co.jp" />
+          </div>
+          <div class="form__field">
+            <label>電話番号</label>
+            <input type="tel" name="tel" placeholder="0853-00-0000" />
+          </div>
+          <div class="form__field">
+            <label>お問い合わせ種別<span class="req">必須</span></label>
+            <select name="type">
+              <option value="">選択してください</option>
+              <option>工事のご相談・お見積もり</option>
+              <option>採用について</option>
+              <option>その他のお問い合わせ</option>
+            </select>
+          </div>
+          <div class="form__field">
+            <label>お問い合わせ内容<span class="req">必須</span></label>
+            <textarea name="message" placeholder="ご相談内容をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="form__submit">この内容で送信する</button>
+          <p class="form__note">※ このフォームはデザイン確認用です。実際の送信機能は公開時に設定します。お急ぎの場合はお電話ください。</p>
+        </form>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__top">
+        <div>
+          <div class="footer__brand-ja">内村<b>電機</b>工務店</div>
+          <div class="footer__brand-en">Uchimura Denki Komuten · Since 1934 · Izumo, Shimane</div>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col"><span class="h">会社</span><a href="about.html">私たちについて</a><a href="works.html">施工実績</a><a href="quality.html">品質・ISO</a></div>
+          <div class="footer__col"><span class="h">事業</span><a href="business.html">事業内容</a><a href="network.html">拠点ネットワーク</a></div>
+          <div class="footer__col"><span class="h">採用・連絡</span><a href="recruit.html">採用情報</a><a href="contact.html">お問い合わせ</a></div>
+        </div>
+      </div>
+      <div class="footer__copy">島根県出雲市平田町 ／ 建設業許可 島根県知事許可 ／ ISO9001 認証取得 ／ © 1934–2026 Uchimura Denki Komuten. All rights reserved.</div>
+    </footer>
+
+  </main>
+</div>
+
+<a href="recruit.html" class="mobile-cta">採用情報を見る</a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="scroll.js?v=4"></script>
+<script src="main.js?v=14"></script>
+</body>
+</html>

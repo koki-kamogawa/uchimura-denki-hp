@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>拠点ネットワーク｜内村電機工務店</title>
+<meta name="description" content="本社（出雲）と島根県内6営業所。県東の安来から県西の益田まで。島根のどこで灯が落ちても駆けつけられる距離に、内村電機工務店はいます。" />
+<link rel="stylesheet" href="style.css?v=14" />
+<link rel="stylesheet" href="pages.css?v=14" />
+<link rel="stylesheet" href="scroll.css?v=3" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__logo">内村<b>電機</b>工務店</div>
+  <button class="topbar__burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+</header>
+
+<div class="layout">
+
+  <nav class="sidenav">
+    <a href="index.html" class="sidenav__logo">
+      <span class="sidenav__logo-ja">内村<b>電機</b>工務店</span>
+      <span class="sidenav__logo-en">Uchimura Denki · Since 1934</span>
+    </a>
+    <div class="sidenav__menu">
+      <a class="sidenav__item" href="index.html"><span>ホーム</span><span class="no">00</span></a>
+      <a class="sidenav__item" href="about.html"><span>私たちについて</span><span class="no">01</span></a>
+      <a class="sidenav__item" href="business.html"><span>事業内容</span><span class="no">02</span></a>
+      <a class="sidenav__item" href="works.html"><span>施工実績</span><span class="no">03</span></a>
+      <a class="sidenav__item is-current" href="network.html"><span>拠点ネットワーク</span><span class="no">04</span></a>
+      <a class="sidenav__item" href="recruit.html"><span>採用情報</span><span class="no">05</span></a>
+      <a class="sidenav__item" href="quality.html"><span>品質・ISO</span><span class="no">06</span></a>
+      <a class="sidenav__item" href="contact.html"><span>お問い合わせ</span><span class="no">07</span></a>
+    </div>
+    <div class="sidenav__spacer"></div>
+    <a href="recruit.html" class="sidenav__cta">採用情報を見る</a>
+    <div class="sidenav__tel">採用・お問い合わせ<b>0853-63-3456</b></div>
+  </nav>
+
+  <main class="main">
+
+    <section class="page-hero">
+      <span class="page-hero__en">Network</span>
+      <img class="page-hero__float f1" src="assets/lamp-1.png" alt="" />
+      <img class="page-hero__float f2" src="assets/lamp-3.png" alt="" />
+      <div class="page-hero__inner">
+        <div class="crumbs"><a href="index.html">HOME</a><span>/</span>拠点ネットワーク</div>
+        <p class="page-hero__label">Our Network</p>
+        <h1 class="page-hero__title">夜になっても、島根の<br />どこかに灯はある<span class="dot">。</span></h1>
+        <p class="page-hero__lead">本社（出雲）と六つの営業所。県東の安来から、県西の益田まで。島根のどこで灯が落ちても、駆けつけられる距離に、私たちはいます。</p>
+      </div>
+    </section>
+
+    <!-- 夜の島根マップ（トップと同じ世界観・7拠点が順に灯る） -->
+    <section class="section network reveal">
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#1B2230"/></svg></div>
+      <p class="section__label" style="color:var(--lamp)">Shimane Map</p>
+      <h2 class="section__title" style="color:var(--warm-white)">島根全域に、<br />七つの灯<span class="dot" style="color:var(--lamp)">。</span></h2>
+      <p style="color:rgba(247,243,236,0.72);max-width:30em">スクロールすると、本社から営業所へと順に灯がともります。これが、私たちが島根を守るかたちです。</p>
+      <div class="network__stage">
+        <img src="assets/shimane.png" alt="島根県全域の地図" class="network__shimane" />
+        <svg class="network__map" viewBox="0 0 1200 655" id="shimaneMap" preserveAspectRatio="xMidYMid meet">
+          <g id="mapDots"></g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 拠点カード -->
+    <section class="section reveal" style="background:var(--warm-white)">
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#F7F3EC"/></svg></div>
+      <p class="section__label">Offices</p>
+      <h2 class="section__title">本社と、六つの営業所<span class="dot">。</span></h2>
+      <div class="office-grid">
+        <div class="office-card is-hq">
+          <span class="office-card__badge">本社 ／ Head Office</span>
+          <div class="office-card__name">出雲本社</div>
+          <div class="office-card__addr">島根県出雲市平田町<br />内村電機工務店 本社・統括拠点。送電線工事と全社の中枢を担います。</div>
+          <div class="office-card__tel">0853-63-3456</div>
+        </div>
+        <div class="office-card">
+          <span class="office-card__badge">営業所</span>
+          <div class="office-card__name">松江営業所</div>
+          <div class="office-card__addr">島根県松江市エリア<br />県都・県東部の電気設備を担当。</div>
+          <div class="office-card__tel">0853-63-3456</div>
+        </div>
+        <div class="office-card">
+          <span class="office-card__badge">営業所</span>
+          <div class="office-card__name">安来営業所</div>
+          <div class="office-card__addr">島根県安来市エリア<br />県最東部。鳥取県境までカバー。</div>
+          <div class="office-card__tel">0853-63-3456</div>
+        </div>
+        <div class="office-card">
+          <span class="office-card__badge">営業所</span>
+          <div class="office-card__name">雲南営業所</div>
+          <div class="office-card__addr">島根県雲南市エリア<br />中山間地域の配電・保守の要。</div>
+          <div class="office-card__tel">0853-63-3456</div>
+        </div>
+        <div class="office-card">
+          <span class="office-card__badge">営業所</span>
+          <div class="office-card__name">大田営業所</div>
+          <div class="office-card__addr">島根県大田市エリア<br />県央部、石見地方の玄関口を担当。</div>
+          <div class="office-card__tel">0853-63-3456</div>
+        </div>
+        <div class="office-card">
+          <span class="office-card__badge">営業所</span>
+          <div class="office-card__name">浜田営業所</div>
+          <div class="office-card__addr">島根県浜田市エリア<br />石見地方西部の電力インフラを支える。</div>
+          <div class="office-card__tel">0853-63-3456</div>
+        </div>
+        <div class="office-card">
+          <span class="office-card__badge">営業所</span>
+          <div class="office-card__name">益田営業所</div>
+          <div class="office-card__addr">島根県益田市エリア<br />県最西部。山口県境まで駆けつけます。</div>
+          <div class="office-card__tel">0853-63-3456</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-foot reveal">
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#9E2820"/></svg></div>
+      <h2 class="cta-foot__title">お近くの拠点から、<br />すぐに駆けつけます<span class="dot" style="color:#fff">。</span></h2>
+      <div class="cta-foot__btns">
+        <a class="cta-foot__btn" href="contact.html">お問い合わせ →</a>
+        <a class="cta-foot__btn is-ghost" href="about.html">私たちについて</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__top">
+        <div>
+          <div class="footer__brand-ja">内村<b>電機</b>工務店</div>
+          <div class="footer__brand-en">Uchimura Denki Komuten · Since 1934 · Izumo, Shimane</div>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col"><span class="h">会社</span><a href="about.html">私たちについて</a><a href="works.html">施工実績</a><a href="quality.html">品質・ISO</a></div>
+          <div class="footer__col"><span class="h">事業</span><a href="business.html">事業内容</a><a href="network.html">拠点ネットワーク</a></div>
+          <div class="footer__col"><span class="h">採用・連絡</span><a href="recruit.html">採用情報</a><a href="contact.html">お問い合わせ</a></div>
+        </div>
+      </div>
+      <div class="footer__copy">島根県出雲市平田町 ／ 建設業許可 島根県知事許可 ／ ISO9001 認証取得 ／ © 1934–2026 Uchimura Denki Komuten. All rights reserved.</div>
+    </footer>
+
+  </main>
+</div>
+
+<a href="recruit.html" class="mobile-cta">採用情報を見る</a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="scroll.js?v=4"></script>
+<script src="main.js?v=14"></script>
+</body>
+</html>
