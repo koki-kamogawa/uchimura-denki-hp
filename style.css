@@ -1,0 +1,376 @@
+/* ============================================================
+   内村電機工務店 コーポレートサイト — style.css
+   コンセプト「島根の街に、灯をともす。」 / web-designer AD v3 準拠
+   色：内村レッド基調＋温白＋墨＋夕暮れの灯。黒尖り廃止。
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Roboto+Mono:wght@500&display=swap');
+
+:root {
+  --red:        #C8352B;  /* 内村レッド（主色） */
+  --red-deep:   #9E2820;  /* 影・ホバー沈み */
+  --warm-white: #F7F3EC;  /* 地 */
+  --paper:      #FBF8F2;  /* カード面 */
+  --ink:        #2A2724;  /* テキスト主 */
+  --ink-mute:   #6E665C;  /* テキスト副 */
+  --sky:        #7FB5D6;  /* 島根の空（街の中だけ） */
+  --leaf:       #7BA05B;  /* 島根の緑（街の中だけ） */
+  --lamp:       #F2A93B;  /* 夕暮れの灯（ご褒美の1点） */
+  --lamp-amber: #E08A2C;
+  --line:       #E5DDD0;  /* ヘアライン */
+  --nav-w: 260px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--warm-white);
+  color: var(--ink);
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  font-weight: 400;
+  font-feature-settings: "palt" 1;
+  font-size: 17px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--red); color: #fff; }
+
+.mono { font-family: "Roboto Mono", monospace; font-feature-settings: "tnum" 1; letter-spacing: 0.02em; }
+.en   { font-family: "Outfit", sans-serif; }
+.dot  { color: var(--red); }   /* 句点の落款 */
+
+/* ============ S0 左サイド固定ナビ（y-staff流・PC） ============ */
+.layout { display: flex; min-height: 100vh; }
+
+.sidenav {
+  position: fixed; top: 0; left: 0; bottom: 0; width: var(--nav-w);
+  background: var(--paper);
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  padding: 28px 0 22px;
+  z-index: 100;
+}
+.sidenav__logo { padding: 0 26px 26px; display: flex; flex-direction: column; gap: 4px; }
+.sidenav__logo-ja { font-weight: 900; font-size: 19px; letter-spacing: 0.04em; color: var(--ink); }
+.sidenav__logo-ja b { color: var(--red); }
+.sidenav__logo-en { font-family: "Outfit", sans-serif; font-size: 9.5px; letter-spacing: 0.32em; color: var(--ink-mute); text-transform: uppercase; }
+.sidenav__menu { display: flex; flex-direction: column; padding: 8px 0; border-top: 1px solid var(--line); }
+.sidenav__item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 26px; font-size: 14px; font-weight: 500; color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: background .3s var(--ease), color .3s, padding-left .3s var(--ease);
+}
+.sidenav__item .no { font-family: "Roboto Mono", monospace; font-size: 10px; color: var(--ink-mute); }
+.sidenav__item:hover { background: var(--warm-white); padding-left: 32px; color: var(--red); }
+.sidenav__item.is-current { color: var(--red); }
+.sidenav__item.is-current .no { color: var(--red); }
+.sidenav__spacer { flex: 1; }
+.sidenav__cta {
+  margin: 0 22px 12px; padding: 14px; text-align: center;
+  background: var(--red); color: #fff; font-weight: 700; font-size: 14px; letter-spacing: 0.06em;
+  border-radius: 2px; transition: background .3s;
+}
+.sidenav__cta:hover { background: var(--red-deep); }
+.sidenav__tel { text-align: center; font-size: 12px; color: var(--ink-mute); }
+.sidenav__tel b { display: block; font-family: "Outfit", sans-serif; font-size: 18px; color: var(--ink); letter-spacing: 0.04em; }
+
+/* ============ メイン領域 ============ */
+.main { margin-left: var(--nav-w); flex: 1; min-width: 0; }
+.section { padding: clamp(64px, 9vw, 130px) clamp(24px, 6vw, 96px); }
+.section__label {
+  font-family: "Outfit", sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.28em; color: var(--red); text-transform: uppercase; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section__label::before { content: ""; width: 28px; height: 2px; background: var(--red); }
+.section__title {
+  font-weight: 900; font-size: clamp(28px, 4.2vw, 52px); line-height: 1.3;
+  letter-spacing: -0.01em; color: var(--ink); margin-bottom: 24px;
+}
+
+/* ============ S1 ファーストビュー：アイソメ島根の街 ============ */
+.fv { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: linear-gradient(180deg, #FBF8F2 0%, #F4EEE2 100%); }
+.fv__scene { position: absolute; inset: 0; z-index: 1; display: flex; align-items: flex-end; justify-content: center; pointer-events: none; }
+.fv__scene img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 70%; }
+.fv__scene svg { width: 100%; height: 100%; }
+.fv::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(95deg, rgba(247,243,236,0.96) 0%, rgba(247,243,236,0.82) 25%, rgba(247,243,236,0.34) 45%, rgba(247,243,236,0) 65%); }
+.fv__copy { position: relative; z-index: 3; padding: 0 clamp(24px, 6vw, 96px); max-width: 760px; }
+.fv__title {
+  font-weight: 900; font-size: clamp(40px, 6.6vw, 92px); line-height: 1.18;
+  letter-spacing: -0.01em; color: var(--ink); margin-bottom: 28px;
+  text-shadow: 0 2px 30px rgba(247,243,236,0.8);
+}
+.fv__lead { font-size: clamp(15px, 1.5vw, 18px); color: var(--ink-mute); line-height: 2; max-width: 28em; margin-bottom: 40px; }
+.fv__meta { display: flex; gap: clamp(20px, 3vw, 44px); flex-wrap: wrap; }
+.fv__meta div { display: flex; flex-direction: column; gap: 3px; }
+.fv__meta .num { font-family: "Roboto Mono", monospace; font-size: clamp(22px, 2.4vw, 30px); color: var(--ink); }
+.fv__meta .num .u { font-size: 0.55em; color: var(--ink-mute); margin-left: 3px; }
+.fv__meta .cap { font-family: "Outfit", sans-serif; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-mute); text-transform: uppercase; }
+
+/* ============ S2 理念ステートメント ============ */
+.statement { background: var(--warm-white); text-align: center; }
+.statement__big { font-weight: 700; font-size: clamp(24px, 3.6vw, 44px); line-height: 1.7; letter-spacing: 0.01em; max-width: 22em; margin: 0 auto; }
+.statement__sub { margin-top: 28px; color: var(--ink-mute); font-size: 16px; max-width: 34em; margin-left: auto; margin-right: auto; }
+
+/* ============ S3 6事業ベントグリッド ============ */
+.business { background: var(--paper); }
+.biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.biz-card {
+  position: relative; background: var(--warm-white); border: 1px solid var(--line);
+  padding: 30px 26px; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between;
+  transition: transform .4s var(--ease), box-shadow .4s, border-color .4s;
+}
+.biz-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(42,39,36,0.08); border-color: var(--red); }
+.biz-card { overflow: hidden; }
+.biz-card__img { position: absolute; right: -6px; bottom: -8px; width: 46%; max-width: 138px; opacity: 0.94; pointer-events: none; transition: transform .45s var(--ease); filter: drop-shadow(0 8px 14px rgba(42,39,36,0.12)); }
+.biz-card:hover .biz-card__img { transform: scale(1.07) translateY(-3px); }
+.biz-card__no, .biz-card__name, .biz-card__desc { position: relative; z-index: 3; }
+.biz-card:not(.is-hero) .biz-card__name { max-width: 56%; }
+.biz-card.is-hero { grid-column: span 2; grid-row: span 2; min-height: 418px; background: linear-gradient(160deg, #FBF8F2, #F2E9DA); }
+.biz-card__img--hero { width: 38%; max-width: 280px; right: 18px; bottom: 14px; opacity: 1; }
+.biz-card__worker { position: absolute; right: 30%; bottom: 14px; width: 15%; max-width: 104px; pointer-events: none; z-index: 2; filter: drop-shadow(0 6px 10px rgba(42,39,36,0.18)); }
+.biz-card.is-hero .biz-card__desc { max-width: 52%; }
+.biz-card__no { font-family: "Roboto Mono", monospace; font-size: 13px; color: var(--red); margin-bottom: 12px; }
+.biz-card__name { font-weight: 900; font-size: clamp(20px, 2vw, 28px); color: var(--ink); }
+.biz-card.is-hero .biz-card__name { font-size: clamp(28px, 3.4vw, 44px); }
+.biz-card__desc { font-size: 14px; color: var(--ink-mute); margin-top: 10px; }
+
+/* ============ S4 施工実績 ============ */
+.works { background: var(--warm-white); }
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+.work-card { background: var(--paper); border: 1px solid var(--line); overflow: hidden; }
+.work-card__media { height: 200px; background: linear-gradient(135deg, var(--sky) 0%, #b9d4e6 100%); display: flex; align-items: flex-end; padding: 16px; }
+.work-card__media .tag { background: rgba(255,255,255,0.85); padding: 4px 10px; font-size: 11px; font-weight: 700; color: var(--red); }
+.work-card__body { padding: 20px 22px; }
+.work-card__name { font-weight: 700; font-size: 18px; color: var(--ink); }
+.work-card__meta { font-family: "Roboto Mono", monospace; font-size: 12px; color: var(--ink-mute); margin-top: 8px; }
+
+/* ============ S5 拠点ネットワーク ============ */
+.network { background: var(--ink); color: var(--warm-white); }
+.network .section__title { color: var(--warm-white); }
+.network__stage { position: relative; margin: 44px auto 0; aspect-ratio: 1200/655; max-width: 920px; }
+.network__shimane { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0.96; }
+.network__map { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ============ S6 採用バナー ============ */
+.recruit-banner { background: linear-gradient(110deg, var(--red-deep) 0%, var(--red) 60%, var(--lamp-amber) 130%); color: #fff; text-align: center; }
+.recruit-banner__title { font-weight: 900; font-size: clamp(26px, 3.6vw, 46px); line-height: 1.4; margin-bottom: 28px; }
+.recruit-banner__btn { display: inline-block; background: #fff; color: var(--red); font-weight: 700; padding: 15px 38px; border-radius: 2px; transition: transform .3s var(--ease); }
+.recruit-banner__btn:hover { transform: translateY(-2px); }
+
+/* ============ S7 新着情報 ============ */
+.news { background: var(--paper); }
+.news-list { margin-top: 36px; border-top: 1px solid var(--line); max-width: 880px; }
+.news-row { display: flex; align-items: center; gap: 22px; padding: 20px 6px; border-bottom: 1px solid var(--line); transition: padding-left .3s var(--ease); }
+.news-row:hover { padding-left: 14px; }
+.news-row .date { font-family: "Roboto Mono", monospace; font-size: 13px; color: var(--ink-mute); white-space: nowrap; }
+.news-row .cat { font-size: 11px; font-weight: 700; color: var(--red); border: 1px solid var(--red); padding: 2px 10px; border-radius: 99px; white-space: nowrap; }
+.news-row .txt { font-size: 15px; color: var(--ink); }
+
+/* ============ S8 フッター ============ */
+.footer { background: var(--ink); color: var(--ink-mute); padding: clamp(48px,7vw,88px) clamp(24px,6vw,96px) 40px; }
+.footer__top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; border-bottom: 1px solid rgba(229,221,208,0.15); padding-bottom: 36px; }
+.footer__brand-ja { font-weight: 900; font-size: 20px; color: var(--warm-white); }
+.footer__brand-ja b { color: var(--red); }
+.footer__brand-en { font-family: "Outfit", sans-serif; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 6px; }
+.footer__links { display: flex; gap: 48px; flex-wrap: wrap; }
+.footer__col { display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+.footer__col a:hover { color: var(--warm-white); }
+.footer__col .h { color: var(--warm-white); font-weight: 700; margin-bottom: 4px; }
+.footer__copy { margin-top: 28px; font-family: "Roboto Mono", monospace; font-size: 11px; letter-spacing: 0.04em; }
+
+/* ============ reveal ============ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* ============ レスポンシブ（モバイル＝採用の本番） ============ */
+.topbar { display: none; }
+@media (max-width: 900px) {
+  .sidenav { display: none; }
+  .main { margin-left: 0; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    position: fixed; top: 0; left: 0; right: 0; height: 60px; padding: 0 18px;
+    background: rgba(251,248,242,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line); z-index: 200;
+  }
+  .topbar__logo { font-weight: 900; font-size: 16px; }
+  .topbar__logo b { color: var(--red); }
+  .topbar__burger { width: 30px; height: 22px; position: relative; }
+  .topbar__burger span { position: absolute; left: 0; right: 0; height: 2px; background: var(--ink); }
+  .topbar__burger span:nth-child(1){top:0} .topbar__burger span:nth-child(2){top:10px} .topbar__burger span:nth-child(3){top:20px}
+  .fv { min-height: auto; padding-top: 60px; flex-direction: column; }
+  .fv__scene { position: relative; order: 2; }
+  .fv__copy { order: 1; padding-top: 40px; }
+  .biz-grid, .works-grid { grid-template-columns: 1fr; }
+  .biz-card.is-hero { grid-column: span 1; grid-row: span 1; min-height: 240px; }
+  .mobile-cta { position: fixed; bottom: 0; left: 0; right: 0; background: var(--red); color: #fff; text-align: center; padding: 14px; font-weight: 700; z-index: 200; }
+}
+@media (min-width: 901px) { .mobile-cta { display: none; } }
+
+/* ============ 街に灯がともる（FV点灯演出・唯一の山場） ============ */
+.fv__scene .lamp-win rect { fill: #b3a384; transition: fill 1.5s var(--ease); }
+.fv__scene.is-lit .lamp-win rect { fill: var(--lamp); }
+.lamp-glow, .lamp-top { transition: filter 1.3s var(--ease); }
+.fv__scene.is-lit .lamp-glow, .fv__scene.is-lit .lamp-top { filter: drop-shadow(0 0 7px var(--lamp)); }
+.powerline path { stroke: #b8ad97; transition: stroke 1.7s var(--ease) .3s; }
+.fv__scene.is-lit .powerline path { stroke: rgba(242,169,59,0.5); }
+#skyTop, #skyBot { transition: stop-color 2.4s var(--ease); }
+
+/* ================================================================
+   kaonavi寄せ：大胆な余白・波形境界・漂うイラスト・夜パート(2026-06-04)
+   ================================================================ */
+/* ① 大胆な余白で呼吸 */
+.section { padding-top: clamp(110px, 14vw, 200px); padding-bottom: clamp(110px, 14vw, 200px); position: relative; overflow: visible; }
+.statement { padding-top: clamp(140px, 17vw, 260px); padding-bottom: clamp(140px, 17vw, 260px); }
+.statement__big { font-size: clamp(28px, 4.4vw, 56px); line-height: 1.9; }
+
+/* ② 波形のセクション境界（kaonaviの顔・有機的な曲線） */
+.wave-top { position: absolute; top: 1px; left: 0; width: 100%; height: 110px; transform: translateY(-99%); z-index: 1; pointer-events: none; line-height: 0; }
+.wave-top svg { width: 100%; height: 100%; display: block; }
+
+/* ③ 漂うイラスト（kaonaviのロケット/惑星のように点在＋スクロール視差） */
+.float { position: absolute; pointer-events: none; z-index: 1; will-change: transform; filter: drop-shadow(0 12px 20px rgba(42,39,36,0.14)); opacity: 0; transition: opacity 1.3s var(--ease); }
+.float.is-in { opacity: 0.95; }
+.float img { width: 100%; display: block; }
+
+/* ④ 夜パート（拠点=夜空・フッター=夜。スクロールで夕→夜へ） */
+.network { background: linear-gradient(180deg, #1B2230 0%, #141A26 100%); overflow: hidden; }
+.footer { background: linear-gradient(180deg, #141A26 0%, #0E131C 100%); }
+.night-star { position: absolute; border-radius: 50%; background: #F7F3EC; opacity: 0; transition: opacity 1.4s ease; }
+.network > *, .footer > * { position: relative; z-index: 2; }
+.network__stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ⑤ セクションラベルを中央寄せの詩的レイアウトにも対応 */
+.statement .section__title { text-align: center; }
+@media (max-width: 900px){ .float { transform: scale(0.7); } .wave-top { height: 44px; } }
+
+/* ================================================================
+   ★ワクワク＝常時モーション＋大きな山場(kaonaviの本質=動き・2026-06-04)
+   ================================================================ */
+/* 星の瞬き（夜空が常に生きている） */
+@keyframes twinkle { 0%,100%{ opacity: var(--op,.5); transform: scale(1); } 50%{ opacity: .1; transform: scale(.6); } }
+.night-star { animation: twinkle var(--tw,3.5s) ease-in-out infinite var(--td,0s); }
+/* 漂うイラストの浮遊（常にゆっくり上下＋微回転） */
+@keyframes floaty { 0%,100%{ transform: translateY(0) rotate(0deg); } 50%{ transform: translateY(-14px) rotate(-2deg); } }
+.float { animation: floaty var(--fl,6s) ease-in-out infinite var(--fd,0s); will-change: transform; }
+.float:nth-of-type(2n){ --fl: 7.5s; --fd: -2s; }
+.float:nth-of-type(3n){ --fl: 5.5s; --fd: -1s; }
+/* 灯のゆらぎ（窓・街灯がじんわり脈動） */
+@keyframes lampPulse { 0%,100%{ filter: drop-shadow(0 0 6px var(--lamp)); } 50%{ filter: drop-shadow(0 0 15px var(--lamp)) drop-shadow(0 0 26px rgba(242,169,59,.35)); } }
+.lamp-pulse { animation: lampPulse 2.6s ease-in-out infinite; }
+/* 拠点の灯：点灯した瞬間に弾けて脈動 */
+@keyframes lampPop { 0%{ transform: scale(0); } 60%{ transform: scale(1.35); } 100%{ transform: scale(1); } }
+/* ★FV：街に一斉点灯（暗い夕暮れ→パッと街じゅうに灯がともる大きな山場） */
+.fv__scene img { filter: brightness(0.46) saturate(0.8) contrast(1.05); transition: filter 2.4s var(--ease); }
+.fv__scene.is-lit img { filter: brightness(1.06) saturate(1.12) contrast(1); }
+/* 点灯の閃光（灯色が街にぶわっと広がる） */
+.fv__flash { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  background: radial-gradient(60% 55% at 58% 62%, rgba(242,169,59,0.55), rgba(242,169,59,0.12) 45%, transparent 72%); }
+.fv__scene.is-lit .fv__flash { animation: litFlash 2.6s var(--ease) forwards; }
+@keyframes litFlash { 0%{opacity:0;} 35%{opacity:1;} 100%{opacity:0;} }
+/* ★送電線に光が走る（点灯後に開始） */
+.fv__wires { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; opacity: 0; transition: opacity 1s ease 2.4s; }
+.fv__scene.is-lit .fv__wires { opacity: 1; }
+.wire-spark { position: absolute; left: 0; width: 88px; height: 3px; border-radius: 3px;
+  background: linear-gradient(90deg, transparent, var(--lamp) 38%, #fff 50%, var(--lamp) 62%, transparent);
+  filter: blur(0.4px) drop-shadow(0 0 7px var(--lamp)); opacity: 0;
+  animation: wireRun 4.6s linear infinite; }
+.wire-spark:nth-child(2){ animation-delay: 1.8s; animation-duration: 5.6s; width: 66px; }
+.wire-spark:nth-child(3){ animation-delay: 3.2s; animation-duration: 4s; width: 56px; }
+@keyframes wireRun { 0%{ transform: translateX(-12vw); opacity: 0; } 8%{ opacity: .95; } 92%{ opacity: .95; } 100%{ transform: translateX(116vw); opacity: 0; } }
+
+/* ================================================================
+   ★「次に行く体験」＝スクロールで要素が順に組み上がる(kaonaviの核)
+   セクション全体でなく、中の要素を1つずつ大きくせり上げる
+   ================================================================ */
+.reveal { transform: none; }                 /* 全体移動はやめ、子要素を動かす */
+.reveal .section__label,
+.reveal .section__title,
+.reveal .statement__big,
+.reveal .statement__sub,
+.reveal .biz-card,
+.reveal .work-card,
+.reveal .news-row,
+.reveal .recruit-banner__title,
+.reveal .recruit-banner__btn,
+.reveal .map__stage,
+.reveal > p {
+  opacity: 0; transform: translateY(56px) scale(.98);
+  transition: opacity .8s var(--ease), transform 1s var(--ease);
+}
+.reveal.is-in .section__label { transition-delay:.05s; }
+.reveal.is-in .section__title { transition-delay:.18s; }
+.reveal.is-in .statement__big { transition-delay:.12s; }
+.reveal.is-in .statement__sub { transition-delay:.5s; }
+.reveal.is-in > p { transition-delay:.38s; }
+.reveal.is-in .map__stage { transition-delay:.4s; }
+.reveal.is-in .biz-card:nth-child(1){transition-delay:.26s}
+.reveal.is-in .biz-card:nth-child(2){transition-delay:.34s}
+.reveal.is-in .biz-card:nth-child(3){transition-delay:.42s}
+.reveal.is-in .biz-card:nth-child(4){transition-delay:.5s}
+.reveal.is-in .biz-card:nth-child(5){transition-delay:.58s}
+.reveal.is-in .biz-card:nth-child(6){transition-delay:.66s}
+.reveal.is-in .work-card:nth-child(1){transition-delay:.28s}
+.reveal.is-in .work-card:nth-child(2){transition-delay:.42s}
+.reveal.is-in .work-card:nth-child(3){transition-delay:.56s}
+.reveal.is-in .news-row:nth-child(1){transition-delay:.2s}
+.reveal.is-in .news-row:nth-child(2){transition-delay:.32s}
+.reveal.is-in .news-row:nth-child(3){transition-delay:.44s}
+.reveal.is-in .recruit-banner__title{transition-delay:.15s}
+.reveal.is-in .recruit-banner__btn{transition-delay:.42s}
+.reveal.is-in .section__label,
+.reveal.is-in .section__title,
+.reveal.is-in .statement__big,
+.reveal.is-in .statement__sub,
+.reveal.is-in .biz-card,
+.reveal.is-in .work-card,
+.reveal.is-in .news-row,
+.reveal.is-in .recruit-banner__title,
+.reveal.is-in .recruit-banner__btn,
+.reveal.is-in .map__stage,
+.reveal.is-in > p {
+  opacity: 1; transform: translateY(0) scale(1) translateX(0);
+}
+
+/* 波形は静的でフラット（kaonaviの波は動かず、滑らかな色面の境界） */
+/* ★登場を多様化（実績は横から差し込む） */
+.reveal .work-card { transform: translateX(64px) scale(.97); }
+/* ★テンポ改善（もたつかせない・開始を早く詰める） */
+.reveal.is-in .section__label{transition-delay:.02s}
+.reveal.is-in .section__title{transition-delay:.1s}
+.reveal.is-in .statement__big{transition-delay:.08s}
+.reveal.is-in .statement__sub{transition-delay:.34s}
+.reveal.is-in > p{transition-delay:.26s}
+.reveal.is-in .map__stage{transition-delay:.3s}
+.reveal.is-in .biz-card:nth-child(1){transition-delay:.16s}
+.reveal.is-in .biz-card:nth-child(2){transition-delay:.22s}
+.reveal.is-in .biz-card:nth-child(3){transition-delay:.28s}
+.reveal.is-in .biz-card:nth-child(4){transition-delay:.34s}
+.reveal.is-in .biz-card:nth-child(5){transition-delay:.4s}
+.reveal.is-in .biz-card:nth-child(6){transition-delay:.46s}
+.reveal.is-in .work-card:nth-child(1){transition-delay:.16s}
+.reveal.is-in .work-card:nth-child(2){transition-delay:.27s}
+.reveal.is-in .work-card:nth-child(3){transition-delay:.38s}
+.reveal.is-in .news-row:nth-child(1){transition-delay:.12s}
+.reveal.is-in .news-row:nth-child(2){transition-delay:.22s}
+.reveal.is-in .news-row:nth-child(3){transition-delay:.32s}
+/* カウント数字 */
+.count { display: inline-block; font-variant-numeric: tabular-nums; }
+/* 送電線に光が流れる（FV・大きな山場の一部） */
+@keyframes lightFlow { 0%{ stroke-dashoffset: 60; } 100%{ stroke-dashoffset: 0; } }
+/* セクションラベルの線が伸びる */
+@keyframes labelLine { from{ width:0; } to{ width:28px; } }
+.is-in .section__label::before { animation: labelLine .8s var(--ease) forwards; }
+/* 数字カウントアップ用 */
+.count { font-variant-numeric: tabular-nums; }
+/* ホバーで事業カードの灯がふわっと（既存biz-card__imgに脈動追加） */
+.biz-card:hover .biz-card__img { animation: floaty 2.5s ease-in-out infinite; }
