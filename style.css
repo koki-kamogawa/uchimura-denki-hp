@@ -149,6 +149,9 @@ a { color: inherit; text-decoration: none; }
 .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
 .work-card { background: var(--paper); border: 1px solid var(--line); overflow: hidden; }
 .work-card__media { height: 200px; background: linear-gradient(135deg, var(--sky) 0%, #b9d4e6 100%); display: flex; align-items: flex-end; padding: 16px; }
+.work-card__media.ph { background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; }
+.work-card__media.ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,12,0) 55%, rgba(20,16,12,0.45)); }
+.work-card__media.ph .tag { position: relative; z-index: 2; }
 .work-card__media .tag { background: rgba(255,255,255,0.85); padding: 4px 10px; font-size: 11px; font-weight: 700; color: var(--red); }
 .work-card__body { padding: 20px 22px; }
 .work-card__name { font-weight: 700; font-size: 18px; color: var(--ink); }
