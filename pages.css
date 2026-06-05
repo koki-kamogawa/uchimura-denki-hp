@@ -45,6 +45,8 @@
 .body-copy + .body-copy { margin-top: 1.4em; }
 
 /* ============ 会社概要テーブル ============ */
+/* 会社紹介の本社写真 */
+.about-photo { aspect-ratio: 16/7; background-size: cover; background-position: center; border-radius: 4px; border: 1px solid var(--line); margin: 14px 0 8px; max-width: 920px; }
 .spec { margin-top: 44px; border-top: 1px solid var(--line); max-width: 880px; }
 .spec__row { display: flex; gap: 28px; padding: 20px 6px; border-bottom: 1px solid var(--line); transition: padding-left .3s var(--ease); }
 .spec__row:hover { padding-left: 12px; }
@@ -79,6 +81,9 @@
   background: linear-gradient(150deg, #F2E9DA 0%, #EADCC4 100%); border: 1px solid var(--line); }
 .biz-row__media.is-dark { background: linear-gradient(155deg, #222A38, #161C28); }
 .biz-row__media img { width: 56%; filter: drop-shadow(0 14px 24px rgba(42,39,36,0.18)); }
+/* 実写対応（会社写真をメディア全面に） */
+.biz-row__media.ph { background-size: cover; background-position: center; background-repeat: no-repeat; }
+.biz-row__media.ph img { display: none; }
 .biz-row__no { font-family: "Roboto Mono", monospace; font-size: 14px; color: var(--red); margin-bottom: 14px; }
 .biz-row__name { font-weight: 900; font-size: clamp(21px, 2.4vw, 34px); color: var(--ink); line-height: 1.35; margin-bottom: 8px; word-break: keep-all; line-break: strict; overflow-wrap: normal; }
 .biz-row__en { font-family: "Outfit", sans-serif; font-size: 12px; letter-spacing: 0.2em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 18px; }
