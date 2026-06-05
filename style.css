@@ -215,7 +215,21 @@ a { color: inherit; text-decoration: none; }
   .fv__scene { position: relative; order: 1; aspect-ratio: 4 / 3; width: 100%; overflow: hidden; border-radius: 4px; }
   .fv__copy { order: 2; padding-top: 32px; }
   .biz-grid, .works-grid { grid-template-columns: 1fr; }
-  .float { display: none; }
+  /* 漂うイラスト：消さず背面へ・小さく薄く（本文を前面に重ねて可読性確保） */
+  .float { z-index: 0 !important; opacity: 0.5; transform: scale(0.45); top: auto !important; bottom: 8px !important; }
+  .statement, .works, .news, .recruit-banner, .business { position: relative; }
+  .statement > *:not(.float):not(.wave-top),
+  .works > *:not(.float):not(.wave-top),
+  .news > *:not(.float):not(.wave-top),
+  .recruit-banner > *:not(.float):not(.wave-top),
+  .business > *:not(.float):not(.wave-top) { position: relative; z-index: 1; }
+  /* FV：タイトルを画像の上に重ねる（本文＝リード・数字は画像の下） */
+  .fv { position: relative; }
+  .fv__scene::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(20,16,12,0.5) 0%, rgba(20,16,12,0.05) 44%, rgba(20,16,12,0) 62%); }
+  .fv__title { position: absolute; top: 92px; left: 24px; right: 24px; z-index: 6; margin: 0;
+    color: #ffffff; text-shadow: 0 2px 18px rgba(20,16,12,0.55); font-size: clamp(32px, 8.5vw, 44px); }
+  .fv__copy { order: 2; padding-top: 26px; position: static; }
   .biz-card.is-hero { grid-column: span 1; grid-row: span 1; min-height: 240px; }
   .mobile-cta { position: fixed; bottom: 0; left: 0; right: 0; background: var(--red); color: #fff; text-align: center; padding: 14px; font-weight: 700; z-index: 200; }
 }
