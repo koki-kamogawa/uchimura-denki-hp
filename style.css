@@ -216,8 +216,11 @@ a { color: inherit; text-decoration: none; }
   .fv__copy { order: 2; padding-top: 32px; }
   .biz-grid, .works-grid { grid-template-columns: 1fr; }
   /* 漂うイラスト：消さず背面へ・小さく薄く（本文を前面に重ねて可読性確保） */
-  .float { z-index: 0 !important; opacity: 0.45; transform: none !important; scale: 0.42; top: auto !important; bottom: 8px !important; }
-  .statement { padding-bottom: 210px; }
+  /* float：絶対配置をやめ、本文の後ろに通常配置で中央（構造的に被らない） */
+  .statement, .works, .news, .recruit-banner { display: flex; flex-direction: column; }
+  .float { position: static !important; order: 99; scale: 0.72; opacity: 0.9;
+    transform: none !important; top: auto !important; bottom: auto !important; left: auto !important; right: auto !important;
+    margin: 10px auto 0 !important; width: 96px !important; }
   .statement, .works, .news, .recruit-banner, .business { position: relative; }
   .statement > *:not(.float):not(.wave-top),
   .works > *:not(.float):not(.wave-top),
