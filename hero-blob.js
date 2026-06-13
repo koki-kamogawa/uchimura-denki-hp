@@ -103,6 +103,9 @@ if (canvas) {
     let intro = 0;
     const clock = new THREE.Clock();
     const speed = prefersReduced ? 0 : 0.22;
+    // モバイルは造形をcanvas内でやや下に置き、ヒーロー本文との視覚干渉を避ける
+    const yBase = isMobile ? -0.14 : 0;
+    root.position.y = yBase;
 
     function tick() {
       if (!visible) { requestAnimationFrame(tick); return; }
@@ -132,7 +135,7 @@ if (canvas) {
         root.rotation.y = t * 0.12; root.rotation.x = 0.25;
       } else if (FORM === 'crystal') {
         root.rotation.y = t * 0.14; root.rotation.x = 0.35;
-        root.position.y = Math.sin(t * 0.7) * 0.05;
+        root.position.y = yBase + Math.sin(t * 0.7) * 0.05;
       } else if (FORM === 'ring7') {
         root.rotation.x = 1.0; root.rotation.z = t * 0.14;
       } else if (FORM === 'sphere') {

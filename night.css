@@ -247,12 +247,12 @@ body.no-webgl #blob{ display: none; }
   width: min(44vw, 680px); aspect-ratio: 1/1; opacity: 0; transition: opacity 1.4s ease .2s; pointer-events: none;
 }
 .hero-blob.is-on{ opacity: 1; }
-/* モバイル: home FVと同じ構図＝造形をヒーロー下部の中央へ・背後に巨大英字 */
+/* モバイル: home FVと完全に同じ配置＝フルスクリーンヒーロー・造形bottom17%中央・背後に英字 */
 @media (max-width: 900px){
-  .page-hero{ padding-bottom: clamp(240px, 64vw, 330px); }
-  .hero-blob{ top: auto; right: auto; left: 50%; bottom: -6vw; transform: translateX(-50%); width: 80vw; max-width: 420px; }
-  .page-hero__en{ top: auto; bottom: 5vw; right: -3vw; font-size: 24vw; line-height: .9;
-    color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.10); }
+  .page-hero{ min-height: 100svh; padding-top: 96px; padding-bottom: 90px; }
+  .hero-blob{ top: auto; right: auto; left: 50%; bottom: 17%; transform: translateX(-50%); width: 88vw; max-width: 440px; }
+  .page-hero__en{ top: auto; bottom: 17%; right: -5vw; font-size: 21vw; line-height: .9;
+    color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.09); }
   /* 理念文: 長文の強制改行を解除し自然に流す（改行崩れ対策） */
   .statement__sub br{ display: none; }
   .statement__sub{ text-wrap: pretty; max-width: 92%; }
