@@ -1,0 +1,245 @@
+/* ============================================================
+   night.css — 「夜の島根に、電気が流れる」全ページ夜化レイヤー
+   (2026-06-13 サイバー方向転換・style.css/pages.css/scroll.cssの後に読む)
+   素材言語: 夜の濃紺黒 / 発光する赤(#C8352B→#FF4534) / Liquid Glass / 液体金属(トップFVのみ)
+   ガードレール: 主役1点 / 色3(夜黒・赤・ガラス白クローム) / モーション必然 / 背景に模様は禁止
+   ============================================================ */
+
+/* ---------- 0. 地と光 ---------- */
+body{
+  background:
+    radial-gradient(1100px 700px at 72% -4%, #10141E 0%, transparent 58%),
+    var(--bg);
+}
+::selection{ background: var(--red-neon); color: #0A0D14; }
+.dot{ color: var(--lamp); }
+
+/* ---------- 1. Liquid Glass サイドナビ／トップバー ---------- */
+.sidenav{
+  background: linear-gradient(168deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  border-right: 1px solid rgba(255,255,255,0.10);
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.04), 8px 0 44px rgba(0,0,0,0.38);
+}
+.sidenav__item.is-current{ color: var(--lamp); }
+.sidenav__item.is-current .no{ color: var(--lamp); }
+.sidenav__cta{
+  background: linear-gradient(120deg, rgba(255,69,52,0.30), rgba(200,53,43,0.16));
+  border: 1px solid rgba(255,90,70,0.45); border-radius: 999px; color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 0 22px rgba(255,69,52,0.16);
+  transition: box-shadow .3s, background .3s;
+}
+.sidenav__cta:hover{
+  background: linear-gradient(120deg, rgba(255,69,52,0.42), rgba(200,53,43,0.24));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 0 36px rgba(255,69,52,0.34);
+}
+@media (max-width: 900px){
+  .topbar{
+    background: rgba(9,12,18,0.66);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .sidenav{ background: rgba(9,12,18,0.94); }
+  .mobile-cta{ box-shadow: 0 -8px 34px rgba(255,69,52,0.22); }
+  .topbar__burger{ background: transparent; border: 0; cursor: pointer; }
+}
+
+/* ---------- 2. トップFV「液体金属」(.nfv / index.html) ---------- */
+.nfv{ position: relative; min-height: 100svh; overflow: hidden; }
+.nfv [data-reveal]{ opacity: 0; transform: translateY(16px);
+  transition: opacity .9s ease, transform 1s var(--ease); }
+body.is-in .nfv [data-reveal]{ opacity: 1; transform: none; }
+
+.nfv__en{
+  position: absolute; z-index: 1; right: -1vw; top: 50%; transform: translateY(-54%);
+  font-family: "Space Grotesk", sans-serif; font-weight: 700;
+  font-size: clamp(100px, 15.5vw, 250px); line-height: .88; text-align: right;
+  letter-spacing: -0.02em; user-select: none; pointer-events: none;
+  color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.14);
+  opacity: 0; transition: opacity 1.8s ease .3s;
+}
+body.is-in .nfv__en{ opacity: 1; }
+
+/* 電流ライン（回路トレース・血流のように流れ続ける） */
+.nfv__line{ position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.nfv__line path{ fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.nfv__line .base{ stroke: rgba(255,69,52,0.16); }
+.nfv__line .pulse{
+  stroke: var(--red-neon); stroke-dasharray: .07 .93; stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 6px rgba(255,69,52,0.9));
+  animation: nightTravel 3.6s linear infinite;
+}
+.nfv__line .node{ fill: rgba(255,69,52,0.55); }
+@keyframes nightTravel{ from{ stroke-dashoffset: 1; } to{ stroke-dashoffset: 0; } }
+
+#blob{
+  position: absolute; z-index: 2; right: 0; top: 50%; transform: translateY(-50%);
+  width: min(46vw, 720px); aspect-ratio: 1/1;
+  opacity: 0; transition: opacity 1.6s ease .2s;
+}
+body.is-in #blob{ opacity: 1; }
+body.no-webgl #blob{ display: none; }
+
+.nfv__copy{ position: absolute; z-index: 3; left: clamp(24px, 5.5vw, 84px); top: 50%; transform: translateY(-52%); max-width: 640px; }
+.nfv__since{ font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .22em; color: var(--ink-mute); margin-bottom: 24px; }
+.nfv__since::before{
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 12px;
+  background: var(--red-neon); box-shadow: 0 0 10px rgba(255,69,52,0.85);
+}
+.nfv__title{ font-weight: 900; font-size: clamp(38px, 5.2vw, 78px); line-height: 1.22; letter-spacing: .01em; color: var(--ink); text-wrap: pretty; line-break: strict; }
+.t-glow{ color: #FF6450; text-shadow: 0 0 16px rgba(255,80,60,0.55), 0 0 64px rgba(255,60,40,0.3); }
+.nfv__lead{ margin-top: 26px; font-size: clamp(13px, 1.05vw, 15px); line-height: 2.15; letter-spacing: .05em; font-weight: 500; color: rgba(242,239,231,0.72); }
+
+.nfv__hud{ position: absolute; z-index: 4; top: 38px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .2em; color: var(--ink-mute); }
+.hud--tl{ left: clamp(24px, 5.5vw, 84px); }
+.hud--tr{ right: clamp(24px, 5.5vw, 84px); }
+
+.nfv__stats{ position: absolute; z-index: 4; left: clamp(24px, 5.5vw, 84px); bottom: 44px; display: flex; list-style: none; margin: 0; padding: 0; }
+.nfv__stats li{ padding: 0 clamp(16px, 2.4vw, 34px); border-left: 1px solid rgba(242,239,231,0.15); }
+.nfv__stats li:first-child{ padding-left: 0; border-left: none; }
+.nfv__stats .num{ display: block; font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(22px, 2.1vw, 32px); line-height: 1.1; color: var(--ink); }
+.nfv__stats .num::after{ content: ""; display: inline-block; width: 5px; height: 5px; margin-left: 7px; vertical-align: 8px; background: var(--red-neon); box-shadow: 0 0 8px rgba(255,69,52,0.7); }
+.nfv__stats .label{ font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .22em; color: var(--ink-mute); margin-top: 6px; display: block; }
+
+.nfv__scroll{ position: absolute; z-index: 4; right: clamp(24px, 5.5vw, 84px); bottom: 44px; display: flex; align-items: center; gap: 14px;
+  font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .3em; color: var(--ink-mute); }
+.nfv__scroll i{ display: block; width: 56px; height: 1px; background: rgba(242,239,231,0.25); position: relative; overflow: hidden; }
+.nfv__scroll i::after{ content: ""; position: absolute; left: 0; top: 0; width: 18px; height: 1px; background: var(--red-neon);
+  animation: nightScrollHint 2.2s cubic-bezier(.4,0,.6,1) infinite; }
+@keyframes nightScrollHint{ from{ transform: translateX(-20px); } to{ transform: translateX(60px); } }
+
+@media (max-width: 900px){
+  .nfv{ min-height: 100svh; padding-top: 60px; }
+  .nfv__copy{ left: 24px; right: 24px; top: 16%; transform: none; max-width: none; }
+  .nfv__title{ font-size: clamp(32px, 9.4vw, 44px); }
+  .nfv__lead{ font-size: 12.5px; line-height: 2; margin-top: 20px; }
+  .nfv__en{ right: -5vw; top: auto; bottom: 17%; transform: none; font-size: 21vw; line-height: .9; -webkit-text-stroke: 1px rgba(242,239,231,0.09); }
+  #blob{ right: auto; left: 50%; top: auto; bottom: 17%; transform: translateX(-50%); width: 88vw; max-width: 440px; }
+  .nfv__hud{ display: none; }
+  .nfv__stats{ left: 24px; right: 24px; bottom: 84px; flex-wrap: wrap; row-gap: 14px; }
+  .nfv__stats li{ flex: 1 1 40%; padding: 0 0 0 14px; }
+  .nfv__stats li:nth-child(3){ border-left: none; padding-left: 0; }
+  .nfv__stats .num{ font-size: 21px; }
+  .nfv__scroll{ display: none; }
+  .nfv__line{ opacity: .6; }
+}
+
+/* ---------- 3. 下層ページヒーロー夜化＋電流の継続モチーフ ---------- */
+.page-hero{ background: linear-gradient(168deg, #0E1320 0%, var(--bg) 72%); }
+.page-hero__en{
+  color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.13);
+  opacity: 1; font-style: normal;
+}
+/* ヒーロー下端の電流（基線＋走る光） */
+.page-hero::before{
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; z-index: 2;
+  background: rgba(255,69,52,0.16);
+}
+.page-hero::after{
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; z-index: 2;
+  background: linear-gradient(90deg, transparent 40%, var(--red-neon) 50%, transparent 60%);
+  background-size: 200% 100%;
+  filter: drop-shadow(0 0 6px rgba(255,69,52,0.85));
+  animation: heroCurrent 4.2s linear infinite;
+}
+@keyframes heroCurrent{ from{ background-position: 200% 0; } to{ background-position: -200% 0; } }
+.page-hero__float{ filter: brightness(.94) saturate(.9) drop-shadow(0 0 20px rgba(255,110,80,0.22)); }
+.page-hero__title{ text-wrap: pretty; line-break: strict; word-break: keep-all; }
+@media (max-width: 760px){
+  .page-hero__title{ font-size: clamp(26px, 7.4vw, 34px); }
+}
+
+/* ---------- 4. パネル＝ガラス（全カード共通） ---------- */
+.biz-card, .work-card, .office-card, .voice-card, .policy-card, .cert-chip{
+  background: linear-gradient(152deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018));
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+}
+.biz-card:hover, .works-grid--page .work-card:hover, .office-card:hover, .voice-card:hover{
+  border-color: rgba(255,90,70,0.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 18px 50px rgba(0,0,0,0.45), 0 0 30px rgba(255,69,52,0.10);
+}
+.biz-card.is-hero{ background: linear-gradient(150deg, rgba(255,255,255,0.07), rgba(200,53,43,0.10)); }
+.biz-card__no{ color: var(--lamp); }
+.biz-card__img, .biz-card__worker{ filter: brightness(.92) saturate(.9) drop-shadow(0 10px 18px rgba(0,0,0,0.45)); }
+.office-card.is-hq{ background: linear-gradient(150deg, rgba(255,255,255,0.08), rgba(200,53,43,0.12)); }
+.office-card__badge, .biz-row__tags span, .news-row .cat, .job-row__name .tag{
+  color: var(--lamp); border-color: rgba(255,90,70,0.5);
+}
+.section__label{ color: var(--lamp); }
+.section__label::before{ background: var(--red-neon); box-shadow: 0 0 8px rgba(255,69,52,0.6); }
+.page-hero__label{ color: var(--lamp); }
+.page-hero__label::before{ background: var(--red-neon); box-shadow: 0 0 8px rgba(255,69,52,0.6); }
+.biz-row__no, .work-cat__h .n, .policy-card__no, .history__year, .voice-card__who b, .job-row__arrow{ color: var(--lamp); }
+.recruit-hero-stat .num{ color: var(--lamp); }
+.crumbs a:hover{ color: var(--lamp); }
+
+/* ---------- 5. 実写写真＝夜トーン＋ガラス縁 ---------- */
+.work-card__media{ background: linear-gradient(135deg, #161D2B, #0E1420); }
+.work-card__media.ph::after{
+  background: linear-gradient(180deg, rgba(8,11,18,0.32) 0%, rgba(8,11,18,0.62) 100%);
+}
+.work-card__media .tag{
+  background: rgba(9,12,18,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.18);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.works-grid--page .work-card__media.m-pub{ background: linear-gradient(135deg, #1A2436, #101722); }
+.works-grid--page .work-card__media.m-med{ background: linear-gradient(135deg, #15251E, #0E1714); }
+.works-grid--page .work-card__media.m-pow{ background: linear-gradient(135deg, #2B1714, #170D0B); }
+.biz-row__media{ background: linear-gradient(150deg, #131826, #0C1018); border-color: rgba(255,255,255,0.10); }
+.biz-row__media.is-dark{ background: linear-gradient(155deg, #131826, #0C1018); }
+.biz-row__media.ph{ position: relative; }
+.biz-row__media.ph::after{
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(8,11,18,0.22), rgba(8,11,18,0.5));
+}
+.about-photo{ position: relative; border-color: rgba(255,255,255,0.10); }
+.about-photo::after{
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(180deg, rgba(8,11,18,0.30), rgba(8,11,18,0.55));
+}
+.message__visual{ background: linear-gradient(160deg, #131826, #0C1018); border-color: rgba(255,255,255,0.10); }
+.message__visual img{ filter: brightness(.92) saturate(.9); }
+
+/* ---------- 6. セクション色の整合（夜のグラデ階調） ---------- */
+.network{ background: linear-gradient(180deg, #0D1119 0%, #090C12 100%); }
+.footer{ background: linear-gradient(180deg, #07090E 0%, #05070A 100%); }
+.footer__top{ border-bottom-color: rgba(242,239,231,0.10); }
+.history::before{ background: linear-gradient(var(--red-neon), var(--red)); opacity: .5; }
+.history__row::before{ background: var(--red-neon); box-shadow: 0 0 0 4px var(--bg), 0 0 12px rgba(255,69,52,0.55); }
+
+/* 採用バナー/CTA帯＝夜に灯る赤い帯（電流の終着） */
+.recruit-banner, .cta-foot{
+  background:
+    radial-gradient(900px 420px at 50% 124%, rgba(255,69,52,0.38), transparent 70%),
+    linear-gradient(115deg, #3F0D09 0%, #7E1D16 52%, #A3271F 100%);
+}
+.recruit-banner__btn, .cta-foot__btn{ border-radius: 999px; box-shadow: 0 0 26px rgba(255,255,255,0.12); }
+.cta-foot__btn.is-ghost{ border-color: rgba(255,255,255,0.55); }
+
+/* 漂う灯＝夜に発光（worker系はわずかに沈める） */
+.float{ filter: brightness(.94) saturate(.92) drop-shadow(0 0 20px rgba(255,110,80,0.20)); }
+
+/* フォーム（夜のガラス入力） */
+.form__field input, .form__field textarea, .form__field select{
+  background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.14); color: var(--ink);
+}
+.form__field input:focus, .form__field textarea:focus, .form__field select:focus{
+  border-color: var(--red-neon); box-shadow: 0 0 0 3px rgba(255,69,52,0.14);
+}
+.form__submit{
+  background: linear-gradient(120deg, rgba(255,69,52,0.85), rgba(200,53,43,0.85));
+  border-radius: 999px; box-shadow: 0 0 24px rgba(255,69,52,0.25);
+}
+.form__submit:hover{ background: linear-gradient(120deg, #FF4534, #C8352B); }
+.work-filter span.is-on{ background: var(--red); border-color: var(--red-neon); box-shadow: 0 0 18px rgba(255,69,52,0.25); }
+
+/* 進捗バー＝電流 */
+.scroll-progress{ background: linear-gradient(90deg, var(--red), var(--red-neon)); box-shadow: 0 0 12px rgba(255,69,52,0.5); }
+
+@media (prefers-reduced-motion: reduce){
+  .nfv [data-reveal]{ transition: none; }
+  .nfv__line .pulse, .nfv__scroll i::after, .page-hero::after{ animation: none; }
+}

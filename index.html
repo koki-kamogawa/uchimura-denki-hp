@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>内村電機工務店｜島根の街に、灯をともす。</title>
 <meta name="description" content="内村電機工務店は1934年から島根全域で、電気・送電・配電・通信・水道・空調の工事を通じて暮らしの裏側を支えてきました。電気を通じて、明るいまちづくりを。" />
-<link rel="stylesheet" href="style.css?v=16" />
+<link rel="stylesheet" href="style.css?v=17" />
 <link rel="stylesheet" href="scroll.css?v=3" />
+<link rel="stylesheet" href="night.css?v=2" />
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -42,118 +46,35 @@
 
   <main class="main">
 
-    <!-- ============ S1 ファーストビュー：アイソメ島根の街 ============ -->
-    <section class="fv" id="fv">
-      <div class="fv__scene" aria-hidden="true">
-        <img src="assets/hero-city.jpg" alt="島根の街に電気を届ける内村電機工務店のアイソメイラスト" class="fv__img" />
-        <div class="fv__flash"></div>
-        <div class="fv__wires"><span class="wire-spark" style="top:36%"></span><span class="wire-spark" style="top:44%"></span><span class="wire-spark" style="top:40%"></span></div>
-        <svg style="display:none" viewBox="0 0 1200 720" id="cityScene" preserveAspectRatio="xMidYMax meet">
-          <!-- 空（昼→夕暮れにJSで変化） -->
-          <defs>
-            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#cfe4f0" id="skyTop"/>
-              <stop offset="1" stop-color="#F4EEE2" id="skyBot"/>
-            </linearGradient>
-            <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ECE3D2"/><stop offset="1" stop-color="#E3D8C2"/>
-            </linearGradient>
-          </defs>
-          <rect x="0" y="0" width="1200" height="720" fill="url(#skyGrad)"/>
-          <!-- 奥の山（島根の自然） -->
-          <path d="M0 360 L160 300 L320 350 L480 290 L640 345 L820 295 L1000 350 L1200 320 L1200 460 L0 460 Z" fill="#9DB58A" opacity="0.55"/>
-          <path d="M0 400 L220 360 L420 400 L640 360 L880 405 L1100 365 L1200 390 L1200 480 L0 480 Z" fill="#7BA05B" opacity="0.45"/>
-          <!-- アイソメ地面 -->
-          <polygon points="600,430 1200,560 600,720 0,560" fill="url(#groundGrad)"/>
-          <!-- 田畑のライン -->
-          <g stroke="#cdbf9f" stroke-width="1.5" opacity="0.6">
-            <line x1="300" y1="565" x2="600" y2="640"/><line x1="450" y1="540" x2="760" y2="610"/>
-            <line x1="640" y1="560" x2="930" y2="620"/>
-          </g>
-
-          <!-- ===== アイソメの建物群（病院・庁舎・住宅） ===== -->
-          <!-- 庁舎（出雲市新庁舎・大きめ・左） -->
-          <g class="bldg">
-            <polygon points="250,470 360,500 360,400 250,370" fill="#E7DECB"/>
-            <polygon points="360,500 470,470 470,370 360,400" fill="#D8CDB4"/>
-            <polygon points="250,370 360,400 470,370 360,340" fill="#F2EBDA"/>
-            <!-- 窓（灯） -->
-            <g class="lamp-win">
-              <rect x="270" y="395" width="14" height="18" rx="1"/><rect x="294" y="403" width="14" height="18" rx="1"/><rect x="318" y="411" width="14" height="18" rx="1"/>
-              <rect x="378" y="405" width="14" height="18" rx="1"/><rect x="402" y="413" width="14" height="18" rx="1"/><rect x="426" y="421" width="14" height="18" rx="1"/>
-            </g>
-          </g>
-          <!-- 病院（県立中央病院・右・十字） -->
-          <g class="bldg">
-            <polygon points="820,510 930,540 930,420 820,390" fill="#E7DECB"/>
-            <polygon points="930,540 1010,517 1010,397 930,420" fill="#D8CDB4"/>
-            <polygon points="820,390 930,420 1010,397 900,368" fill="#F2EBDA"/>
-            <text x="895" y="445" font-family="Outfit" font-size="34" fill="#C8352B" opacity="0.8" text-anchor="middle">＋</text>
-            <g class="lamp-win">
-              <rect x="838" y="418" width="13" height="16" rx="1"/><rect x="860" y="424" width="13" height="16" rx="1"/>
-              <rect x="838" y="450" width="13" height="16" rx="1"/><rect x="860" y="456" width="13" height="16" rx="1"/>
-              <rect x="946" y="430" width="13" height="16" rx="1"/><rect x="968" y="424" width="13" height="16" rx="1"/>
-            </g>
-          </g>
-          <!-- 住宅（小・複数） -->
-          <g class="bldg">
-            <polygon points="540,560 600,576 600,520 540,504" fill="#EAD7C8"/>
-            <polygon points="600,576 654,560 654,504 600,520" fill="#DCC6B4"/>
-            <polygon points="540,504 600,520 654,504 594,488" fill="#F2E4D6"/>
-            <g class="lamp-win"><rect x="556" y="524" width="11" height="13"/><rect x="612" y="528" width="11" height="13"/></g>
-          </g>
-          <g class="bldg">
-            <polygon points="690,592 742,606 742,558 690,544" fill="#EAD7C8"/>
-            <polygon points="742,606 788,592 788,544 742,558" fill="#DCC6B4"/>
-            <polygon points="690,544 742,558 788,544 736,530" fill="#F2E4D6"/>
-            <g class="lamp-win"><rect x="704" y="562" width="10" height="12"/><rect x="752" y="566" width="10" height="12"/></g>
-          </g>
-
-          <!-- ===== 送電鉄塔（主役・内村の象徴） ===== -->
-          <g stroke="#6E665C" stroke-width="2.4" fill="none" class="tower">
-            <polygon points="600,180 632,470 568,470" fill="#efe8da" stroke="#8a8174" stroke-width="2"/>
-            <line x1="584" y1="325" x2="616" y2="325"/><line x1="576" y1="400" x2="624" y2="400"/>
-            <line x1="568" y1="250" x2="632" y2="250" stroke-width="3"/>
-            <line x1="576" y1="290" x2="624" y2="290" stroke-width="3"/>
-            <line x1="568" y1="250" x2="616" y2="325"/><line x1="632" y1="250" x2="584" y2="325"/>
-            <line x1="576" y1="290" x2="624" y2="400"/><line x1="624" y1="290" x2="576" y2="400"/>
-          </g>
-          <!-- 送電線（隣の鉄塔へ・灯る） -->
-          <g class="powerline" stroke="#b8ad97" stroke-width="1.6" fill="none">
-            <path d="M568 250 Q400 300 250 250"/><path d="M632 250 Q800 300 980 240"/>
-            <path d="M568 290 Q400 340 250 295"/><path d="M632 290 Q800 340 980 285"/>
-          </g>
-          <!-- 頂部の航空障害灯（灯る） -->
-          <circle class="lamp-top" cx="600" cy="178" r="5" fill="#F2A93B"/>
-
-          <!-- 街灯（灯る） -->
-          <g class="lamp-post" stroke="#8a8174" stroke-width="2">
-            <line x1="470" y1="560" x2="470" y2="520"/><circle cx="470" cy="516" r="5" fill="#F2A93B" class="lamp-glow"/>
-            <line x1="880" y1="600" x2="880" y2="560"/><circle cx="880" cy="556" r="5" fill="#F2A93B" class="lamp-glow"/>
-          </g>
-
-          <!-- 働く人（小・象徴） -->
-          <g fill="#3a352f">
-            <circle cx="700" cy="540" r="5"/><rect x="697" y="545" width="6" height="13" rx="2"/>
-            <circle cx="420" cy="500" r="5"/><rect x="417" y="505" width="6" height="13" rx="2"/>
-          </g>
-        </svg>
+    <!-- ============ S1 ファーストビュー：液体金属（夜の島根に、電気が流れる） ============ -->
+    <section class="nfv" id="fv">
+      <div class="nfv__en" aria-hidden="true">UCHIMURA<br />ELECTRIC</div>
+      <svg class="nfv__line" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+        <path class="base"  d="M-20 660 H 430 L 500 590 H 880 L 950 700 H 1460" pathLength="1"/>
+        <path class="pulse" d="M-20 660 H 430 L 500 590 H 880 L 950 700 H 1460" pathLength="1"/>
+        <circle class="node" cx="430" cy="660" r="3"/><circle class="node" cx="500" cy="590" r="3"/>
+        <circle class="node" cx="880" cy="590" r="3"/><circle class="node" cx="950" cy="700" r="3"/>
+      </svg>
+      <canvas id="blob"></canvas>
+      <div class="nfv__copy">
+        <p class="nfv__since" data-reveal style="transition-delay:.25s">SINCE 1934 — SHIMANE, JAPAN</p>
+        <h1 class="nfv__title" data-reveal style="transition-delay:.4s">島根の街に、<br /><span class="t-glow">灯</span>をともす<span class="dot">。</span></h1>
+        <p class="nfv__lead" data-reveal style="transition-delay:.6s">電気を通じて、明るいまちづくりを。<br />内村電機工務店は1934年から、島根の暮らしの裏側を支えています。</p>
       </div>
-      <div class="fv__copy">
-        <h1 class="fv__title">島根の街に、<br />灯をともす<span class="dot">。</span></h1>
-        <p class="fv__lead">電気を通じて、明るいまちづくりを。<br />内村電機工務店は1934年から、島根の暮らしの裏側を支えています。</p>
-        <div class="fv__meta">
-          <div><span class="num"><span class="count" data-to="1934">0</span></span><span class="cap">Since</span></div>
-          <div><span class="num"><span class="count" data-to="92">0</span><span class="u">年</span></span><span class="cap">History</span></div>
-          <div><span class="num"><span class="count" data-to="7">0</span><span class="u">拠点</span></span><span class="cap">Offices</span></div>
-          <div><span class="num"><span class="count" data-to="128">0</span><span class="u">名</span></span><span class="cap">Staff</span></div>
-        </div>
-      </div>
+      <div class="nfv__hud hud--tl" data-reveal style="transition-delay:.8s">EST. 1934 / IZUMO</div>
+      <div class="nfv__hud hud--tr" data-reveal style="transition-delay:.8s">35.36&#176;N&nbsp;&nbsp;132.75&#176;E</div>
+      <ul class="nfv__stats" data-reveal style="transition-delay:.75s">
+        <li><span class="num"><span class="count" data-to="1934">0</span></span><span class="label">SINCE</span></li>
+        <li><span class="num"><span class="count" data-to="92">0</span></span><span class="label">YEARS</span></li>
+        <li><span class="num"><span class="count" data-to="7">0</span></span><span class="label">BASES</span></li>
+        <li><span class="num"><span class="count" data-to="128">0</span></span><span class="label">STAFF</span></li>
+      </ul>
+      <div class="nfv__scroll" data-reveal style="transition-delay:.9s"><span>SCROLL</span><i></i></div>
     </section>
 
     <!-- ============ S2 理念ステートメント ============ -->
     <section class="section statement reveal" id="statement">
-      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#F7F3EC"/></svg></div>
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#090C12"/></svg></div>
       <img class="float" src="assets/lamp-1.png" style="left:7%;top:20%;width:84px" data-speed="0.14" alt="" />
       <img class="float" src="assets/worker-3.png" style="right:8%;bottom:14%;width:128px" data-speed="-0.1" alt="" />
       <p class="statement__big">家の明かりも、<br />病院の灯も、まちの夜も<span class="dot">。</span><br />その裏側には、いつも<br />一本の「線」があります<span class="dot">。</span></p>
@@ -162,7 +83,7 @@
 
     <!-- ============ S3 6事業ベントグリッド ============ -->
     <section class="section business reveal">
-      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#FBF8F2"/></svg></div>
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#0E1219"/></svg></div>
       <p class="section__label">Business</p>
       <h2 class="section__title">島根の暮らしを支える、6つの仕事<span class="dot">。</span></h2>
       <div class="biz-grid">
@@ -182,7 +103,7 @@
 
     <!-- ============ S4 施工実績 ============ -->
     <section class="section works reveal">
-      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#F7F3EC"/></svg></div>
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#090C12"/></svg></div>
       <img class="float" src="assets/lamp-2.png" style="right:4%;top:14%;width:78px;z-index:0;opacity:.85" alt="" />
       <p class="section__label">Works</p>
       <h2 class="section__title">島根の、大きな建物の灯は、<br />私たちが点けました<span class="dot">。</span></h2>
@@ -204,7 +125,7 @@
 
     <!-- ============ S5 拠点ネットワーク（島根マップ） ============ -->
     <section class="section network reveal">
-      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#1B2230"/></svg></div>
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#0D1119"/></svg></div>
       <p class="section__label" style="color:var(--lamp)">Network</p>
       <h2 class="section__title" style="color:var(--warm-white)">夜になっても、<br />島根のどこかに灯はある<span class="dot" style="color:var(--lamp)">。</span></h2>
       <p style="color:rgba(247,243,236,0.72);max-width:30em">本社（出雲）と六つの営業所。県東の安来から、県西の益田まで。<br />島根のどこで灯が落ちても、駆けつけられる距離に、私たちはいます。</p>
@@ -218,7 +139,7 @@
 
     <!-- ============ S6 採用バナー ============ -->
     <section class="recruit-banner section reveal">
-      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#9E2820"/></svg></div>
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#5E140E"/></svg></div>
       <img class="float" src="assets/worker-3.png" style="left:6%;bottom:8%;width:120px;z-index:0;opacity:.95" alt="" />
       <h2 class="recruit-banner__title">島根に、灯をともす人に<br />なりませんか<span class="dot" style="color:#fff">。</span></h2>
       <a href="recruit.html" class="recruit-banner__btn">採用情報を見る →</a>
@@ -226,7 +147,7 @@
 
     <!-- ============ S7 新着情報 ============ -->
     <section class="section news reveal">
-      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#FBF8F2"/></svg></div>
+      <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#0E1219"/></svg></div>
       <img class="float" src="assets/lamp-1.png" style="right:5%;top:16%;width:72px;z-index:0;opacity:.8" alt="" />
       <p class="section__label">News</p>
       <h2 class="section__title">新着情報<span class="dot">。</span></h2>
@@ -260,6 +181,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="scroll.js?v=4"></script>
-<script src="main.js?v=13"></script>
+<script src="main.js?v=15"></script>
+<script type="module" src="fv-cyber.js?v=2"></script>
 </body>
 </html>

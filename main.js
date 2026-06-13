@@ -35,14 +35,14 @@
     SITES.forEach(function (s, i) {
       var glow = document.createElementNS(ns, 'circle');
       glow.setAttribute('cx', s.x); glow.setAttribute('cy', s.y);
-      glow.setAttribute('r', s.main ? 16 : 12); glow.setAttribute('fill', '#F2A93B');
+      glow.setAttribute('r', s.main ? 16 : 12); glow.setAttribute('fill', '#FF4534');
       glow.setAttribute('opacity', '0');
       glow.style.transition = 'opacity .8s ' + (0.15 + i * 0.12) + 's';
       glow.dataset.glow = '1';
       g.appendChild(glow);
       var c = document.createElementNS(ns, 'circle');
       c.setAttribute('cx', s.x); c.setAttribute('cy', s.y);
-      c.setAttribute('r', s.main ? 4.5 : 3.2); c.setAttribute('fill', '#F7E3B8');
+      c.setAttribute('r', s.main ? 4.5 : 3.2); c.setAttribute('fill', '#FFD9CF');
       c.setAttribute('opacity', '0');
       c.style.transition = 'opacity .5s ' + (0.15 + i * 0.12) + 's';
       g.appendChild(c);

@@ -1,0 +1,179 @@
+/* ============================================================
+   FV試作「夜の島根に、電気が流れる」 — 方向確認用（既存ページ無傷）
+   素材言語: 夜の濃紺黒 / 発光する赤(#C8352B→neon) / Liquid Glass / 液体金属
+   ガードレール: 主役1点(流体金属) / 色3 / モーション必然 / 模様の背景は禁止
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07090E;
+  --ink:#F2EFE7;
+  --ink-dim:rgba(242,239,231,.5);
+  --red:#C8352B;
+  --red-neon:#FF4534;
+  --mono:'IBM Plex Mono',monospace;
+  --en:'Space Grotesk',sans-serif;
+  --jp:'Noto Sans JP',sans-serif;
+}
+html,body{height:100%}
+body{
+  font-family:var(--jp);
+  color:var(--ink);
+  background:radial-gradient(1200px 800px at 66% 44%, #10141E 0%, var(--bg) 60%), var(--bg);
+  overflow:hidden;
+}
+/* 周辺減光（照明であって模様ではない） */
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:9;
+  background:radial-gradient(125% 95% at 50% 45%, transparent 58%, rgba(2,3,6,.55) 100%);
+}
+a{color:inherit;text-decoration:none}
+
+/* ---------- 出現演出 ---------- */
+[data-reveal]{opacity:0; transform:translateY(16px);
+  transition:opacity .9s ease, transform 1s cubic-bezier(.22,1,.36,1)}
+body.is-in [data-reveal]{opacity:1; transform:none}
+
+/* ---------- Liquid Glass ナビ ---------- */
+.glassnav{
+  position:fixed; top:26px; left:50%; translate:-50% 0; z-index:20;
+  display:flex; align-items:center; gap:30px;
+  padding:10px 12px 10px 24px; border-radius:999px;
+  background:linear-gradient(120deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+  -webkit-backdrop-filter:blur(22px) saturate(170%);
+  backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.04),
+             0 14px 44px rgba(0,0,0,.5);
+}
+.glassnav__logo{font-weight:900; font-size:14px; letter-spacing:.08em; white-space:nowrap}
+.glassnav ul{display:flex; gap:24px; list-style:none}
+.glassnav ul a{font-size:12.5px; font-weight:700; letter-spacing:.06em; color:rgba(242,239,231,.78); transition:color .3s}
+.glassnav ul a:hover{color:var(--ink)}
+.glassnav__cta{
+  font-family:var(--en); font-weight:700; font-size:12px; letter-spacing:.14em;
+  padding:9px 20px; border-radius:999px; white-space:nowrap;
+  background:linear-gradient(120deg, rgba(255,69,52,.26), rgba(200,53,43,.16));
+  border:1px solid rgba(255,90,70,.45);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 0 22px rgba(255,69,52,.22);
+  transition:box-shadow .3s;
+}
+.glassnav__cta:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.18), 0 0 34px rgba(255,69,52,.4)}
+
+/* ---------- FV ---------- */
+.fv{position:relative; height:100svh; min-height:620px; overflow:hidden}
+
+/* 巨大英字（背面・アウトライン） */
+.fv__en{
+  position:absolute; z-index:1; right:-1vw; top:50%; transform:translateY(-54%);
+  font-family:var(--en); font-weight:700;
+  font-size:clamp(110px,17.5vw,280px); line-height:.88; text-align:right;
+  letter-spacing:-.02em; user-select:none; pointer-events:none;
+  color:transparent; -webkit-text-stroke:1px rgba(242,239,231,.14);
+  opacity:0; transition:opacity 1.8s ease .3s;
+}
+body.is-in .fv__en{opacity:1}
+
+/* 電流ライン（回路トレース・背面で血流のように流れる） */
+.fv__line{position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none}
+.fv__line path{fill:none; stroke-width:1.5; vector-effect:non-scaling-stroke}
+.fv__line .base{stroke:rgba(255,69,52,.16)}
+.fv__line .pulse{
+  stroke:var(--red-neon); stroke-dasharray:.07 .93; stroke-dashoffset:1;
+  filter:drop-shadow(0 0 6px rgba(255,69,52,.9));
+  animation:travel 3.6s linear infinite;
+}
+.fv__line .node{fill:rgba(255,69,52,.55)}
+@keyframes travel{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+
+/* 液体金属（主役・1点集中） */
+#blob{
+  position:absolute; z-index:2; right:0; top:50%; transform:translateY(-50%);
+  width:min(52vw,800px); aspect-ratio:1/1;
+  opacity:0; transition:opacity 1.6s ease .2s;
+}
+body.is-in #blob{opacity:1}
+
+/* WebGL不可時のフォールバック（赤い灯） */
+.fv__orb{display:none}
+body.no-webgl .fv__orb{
+  display:block; position:absolute; z-index:2; right:8vw; top:50%; translate:0 -50%;
+  width:min(34vw,460px); aspect-ratio:1/1; border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, rgba(255,120,90,.9), rgba(200,53,43,.5) 45%, transparent 72%);
+  filter:blur(2px);
+}
+
+/* コピー */
+.fv__copy{position:absolute; z-index:3; left:clamp(24px,5.5vw,84px); top:50%; transform:translateY(-52%); max-width:660px}
+.fv__since{font-family:var(--mono); font-size:11px; letter-spacing:.22em; color:var(--ink-dim); margin-bottom:24px}
+.fv__since::before{
+  content:""; display:inline-block; width:7px; height:7px; margin-right:12px;
+  background:var(--red-neon); box-shadow:0 0 10px rgba(255,69,52,.85);
+}
+.fv__title{font-weight:900; font-size:clamp(40px,5.6vw,84px); line-height:1.2; letter-spacing:.01em; text-wrap:pretty; line-break:strict}
+.t-glow{color:#FF6450; text-shadow:0 0 16px rgba(255,80,60,.55), 0 0 64px rgba(255,60,40,.3)}
+.fv__lead{margin-top:28px; font-size:clamp(13px,1.05vw,15px); line-height:2.15; letter-spacing:.05em; font-weight:500; color:rgba(242,239,231,.72)}
+
+/* HUD（mono・四隅の計器） */
+.fv__hud{
+  position:absolute; z-index:4; top:38px;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; color:var(--ink-dim);
+}
+.hud--tl{left:clamp(24px,5.5vw,84px)}
+.hud--tr{right:clamp(24px,5.5vw,84px)}
+
+/* 数字（mono番号の原理） */
+.fv__stats{
+  position:absolute; z-index:4; left:clamp(24px,5.5vw,84px); bottom:44px;
+  display:flex; list-style:none;
+}
+.fv__stats li{padding:0 clamp(18px,2.6vw,38px); border-left:1px solid rgba(242,239,231,.15)}
+.fv__stats li:first-child{padding-left:0; border-left:none}
+.fv__stats .num{
+  display:block; font-family:var(--en); font-weight:700;
+  font-size:clamp(24px,2.3vw,34px); line-height:1.1;
+}
+.fv__stats .num::after{content:""; display:inline-block; width:5px; height:5px; margin-left:7px; vertical-align:8px; background:var(--red-neon); box-shadow:0 0 8px rgba(255,69,52,.7)}
+.fv__stats .label{font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; color:var(--ink-dim); margin-top:6px; display:block}
+
+/* スクロール示唆 */
+.fv__scroll{
+  position:absolute; z-index:4; right:clamp(24px,5.5vw,84px); bottom:44px;
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.3em; color:var(--ink-dim);
+}
+.fv__scroll i{display:block; width:56px; height:1px; background:rgba(242,239,231,.25); position:relative; overflow:hidden}
+.fv__scroll i::after{
+  content:""; position:absolute; left:0; top:0; width:18px; height:1px; background:var(--red-neon);
+  animation:scrollhint 2.2s cubic-bezier(.4,0,.6,1) infinite;
+}
+@keyframes scrollhint{from{transform:translateX(-20px)}to{transform:translateX(60px)}}
+
+.proto-tag{
+  position:fixed; z-index:20; right:16px; bottom:12px;
+  font-family:var(--mono); font-size:9px; letter-spacing:.16em; color:rgba(242,239,231,.3);
+}
+
+/* ---------- モバイル ---------- */
+@media (max-width:900px){
+  .glassnav{top:16px; gap:16px; padding:9px 10px 9px 18px; width:calc(100% - 32px); justify-content:space-between}
+  .glassnav ul{display:none}
+  .fv{min-height:100svh}
+  .fv__copy{left:24px; right:24px; top:17%; transform:none; max-width:none}
+  .fv__title{font-size:clamp(34px,9.8vw,46px)}
+  .fv__lead{font-size:12.5px; line-height:2; margin-top:20px}
+  .fv__en{right:-5vw; top:auto; bottom:16%; transform:none; font-size:21vw; line-height:.9; -webkit-text-stroke:1px rgba(242,239,231,.09)}
+  #blob{right:auto; left:50%; top:auto; bottom:11%; transform:translateX(-50%); width:96vw; max-width:480px}
+  .proto-tag{display:none}
+  .fv__hud{display:none}
+  .fv__stats{left:24px; right:24px; bottom:26px; flex-wrap:wrap; row-gap:14px}
+  .fv__stats li{flex:1 1 40%; padding:0 0 0 14px}
+  .fv__stats li:nth-child(3){border-left:none; padding-left:0}
+  .fv__stats .num{font-size:22px}
+  .fv__scroll{display:none}
+  .fv__line{opacity:.6}
+}
+
+@media (prefers-reduced-motion:reduce){
+  [data-reveal]{transition:none}
+  .fv__line .pulse,.fv__scroll i::after{animation:none}
+}
