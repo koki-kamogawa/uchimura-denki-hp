@@ -8,7 +8,10 @@
 <link rel="stylesheet" href="style.css?v=17" />
 <link rel="stylesheet" href="pages.css?v=18" />
 <link rel="stylesheet" href="scroll.css?v=3" />
-<link rel="stylesheet" href="night.css?v=2" />
+<link rel="stylesheet" href="night.css?v=3" />
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -43,9 +46,8 @@
   <main class="main">
 
     <section class="page-hero">
+      <canvas class="hero-blob" aria-hidden="true"></canvas>
       <span class="page-hero__en">Recruit</span>
-      <img class="page-hero__float f1" src="assets/worker-2.png" alt="" />
-      <img class="page-hero__float f2" src="assets/lamp-1.png" alt="" />
       <div class="page-hero__inner">
         <div class="crumbs"><a href="index.html">HOME</a><span>/</span>採用情報</div>
         <p class="page-hero__label">Recruit</p>
@@ -108,7 +110,6 @@
 
     <section class="cta-foot reveal">
       <div class="wave-top"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path d="M0,42 C360,4 560,108 840,112 C1110,116 1260,48 1440,36 L1440,130 L0,130 Z" fill="#5E140E"/></svg></div>
-      <img class="float" src="assets/worker-1.png" style="right:7%;bottom:6%;width:104px;opacity:.95" alt="" />
       <h2 class="cta-foot__title">あなたの手で、島根に<br />灯をともしませんか<span class="dot" style="color:#fff">。</span></h2>
       <div class="cta-foot__btns">
         <a class="cta-foot__btn" href="contact.html">応募・お問い合わせ →</a>
@@ -138,5 +139,6 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="scroll.js?v=4"></script>
 <script src="main.js?v=15"></script>
+<script type="module" src="hero-blob.js?v=1"></script>
 </body>
 </html>

@@ -8,7 +8,10 @@
 <link rel="stylesheet" href="style.css?v=17" />
 <link rel="stylesheet" href="pages.css?v=18" />
 <link rel="stylesheet" href="scroll.css?v=3" />
-<link rel="stylesheet" href="night.css?v=2" />
+<link rel="stylesheet" href="night.css?v=3" />
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -43,9 +46,8 @@
   <main class="main">
 
     <section class="page-hero">
+      <canvas class="hero-blob" aria-hidden="true"></canvas>
       <span class="page-hero__en">Works</span>
-      <img class="page-hero__float f1" src="assets/lamp-2.png" alt="" />
-      <img class="page-hero__float f2" src="assets/infra-1.png" alt="" />
       <div class="page-hero__inner">
         <div class="crumbs"><a href="index.html">HOME</a><span>/</span>施工実績</div>
         <p class="page-hero__label">Our Works</p>
@@ -167,5 +169,6 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="scroll.js?v=4"></script>
 <script src="main.js?v=15"></script>
+<script type="module" src="hero-blob.js?v=1"></script>
 </body>
 </html>

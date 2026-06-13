@@ -239,6 +239,61 @@ body.no-webgl #blob{ display: none; }
 /* 進捗バー＝電流 */
 .scroll-progress{ background: linear-gradient(90deg, var(--red), var(--red-neon)); box-shadow: 0 0 12px rgba(255,69,52,0.5); }
 
+/* ---------- 7. FVのリッチさを全体へ（2026-06-13 第2弾） ---------- */
+/* 下層ヒーローの液体金属（継続モチーフ・小型） */
+.hero-blob{
+  position: absolute; z-index: 1; right: clamp(0px, 3vw, 90px); top: 54%; transform: translateY(-50%);
+  width: min(32vw, 500px); aspect-ratio: 1/1; opacity: 0; transition: opacity 1.4s ease .2s; pointer-events: none;
+}
+.hero-blob.is-on{ opacity: 1; }
+@media (max-width: 900px){ .hero-blob{ display: none; } }
+
+/* カードのガラス光沢スイープ（hoverで光が走る） */
+.biz-card, .work-card, .office-card, .voice-card, .policy-card, .cert-chip{ position: relative; overflow: hidden; }
+.biz-card::after, .work-card::after, .office-card::after, .voice-card::after, .policy-card::after, .cert-chip::after{
+  content: ""; position: absolute; inset: 0; z-index: 6; pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.075) 50%, transparent 58%);
+  transform: translateX(-130%); transition: transform .9s var(--ease);
+}
+.biz-card:hover::after, .work-card:hover::after, .office-card:hover::after,
+.voice-card:hover::after, .policy-card:hover::after, .cert-chip:hover::after{ transform: translateX(130%); }
+
+/* 6事業カード＝タイポグラフィの夜景（イラスト撤去・新アセット待ちでも成立する顔） */
+.biz-card::before{
+  content: attr(data-en); position: absolute; right: 12px; bottom: 2px; z-index: 1; pointer-events: none;
+  font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1; letter-spacing: -0.02em;
+  font-size: clamp(44px, 4.4vw, 72px); color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.10);
+}
+.biz-card.is-hero::before{ font-size: clamp(96px, 11vw, 170px); right: 16px; bottom: 6px; -webkit-text-stroke: 1px rgba(242,239,231,0.12); }
+.biz-card__no{
+  font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1;
+  font-size: clamp(30px, 2.6vw, 44px); color: transparent; -webkit-text-stroke: 1px rgba(255,90,70,0.6);
+  margin-bottom: 14px;
+}
+.biz-card.is-hero .biz-card__no{ font-size: clamp(52px, 5.4vw, 84px); }
+.biz-card:hover .biz-card__no{ -webkit-text-stroke: 1px rgba(255,90,70,0.95); }
+
+/* 理念＝コピーの「一本の線」が天から降りてくる */
+.statement{ position: relative; }
+.statement::before{
+  content: ""; position: absolute; left: 50%; top: 0; width: 1px; height: clamp(70px, 11vw, 150px); z-index: 1;
+  background: linear-gradient(180deg, var(--red-neon), transparent);
+  box-shadow: 0 0 12px rgba(255,69,52,0.55);
+}
+
+/* 代表メッセージのビジュアル＝発光する「灯」（イラスト撤去） */
+.message__visual{
+  align-items: center;
+  background:
+    radial-gradient(420px 420px at 50% 58%, rgba(255,69,52,0.14), transparent 70%),
+    linear-gradient(160deg, #131826, #0C1018);
+}
+.message__glyph{
+  font-weight: 900; font-size: clamp(150px, 15vw, 240px); line-height: 1;
+  color: rgba(255,90,70,0.10); -webkit-text-stroke: 1px rgba(255,100,80,0.5);
+  text-shadow: 0 0 60px rgba(255,69,52,0.25);
+}
+
 @media (prefers-reduced-motion: reduce){
   .nfv [data-reveal]{ transition: none; }
   .nfv__line .pulse, .nfv__scroll i::after, .page-hero::after{ animation: none; }
