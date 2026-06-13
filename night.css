@@ -252,7 +252,9 @@ body.no-webgl #blob{ display: none; }
   .page-hero{ min-height: 100svh; padding-top: 96px; padding-bottom: 90px; }
   .hero-blob{ top: auto; right: auto; left: 50%; bottom: 17%; transform: translateX(-50%); width: 88vw; max-width: 440px; }
   .page-hero__en{ top: auto; bottom: 17%; right: -5vw; font-size: 21vw; line-height: .9;
-    color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.09); }
+    color: transparent; -webkit-text-stroke: 1.3px rgba(242,239,231,0.26);
+    /* 造形のメタリック明部に負けないよう、文字に微かな発光と背面の沈みを与えて可読性を確保 */
+    text-shadow: 0 0 18px rgba(8,11,18,0.85), 0 0 2px rgba(8,11,18,0.9); }
   /* 理念文: 長文の強制改行を解除し自然に流す（改行崩れ対策） */
   .statement__sub br{ display: none; }
   .statement__sub{ text-wrap: pretty; max-width: 92%; }
