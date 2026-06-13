@@ -210,11 +210,12 @@ body.no-webgl #blob{ display: none; }
 .history::before{ background: linear-gradient(var(--red-neon), var(--red)); opacity: .5; }
 .history__row::before{ background: var(--red-neon); box-shadow: 0 0 0 4px var(--bg), 0 0 12px rgba(255,69,52,0.55); }
 
-/* 採用バナー/CTA帯＝夜に灯る赤い帯（電流の終着） */
+/* 採用バナー/CTA帯＝夜の鉄塔群に赤い電流（nanobananaアセット 2026-06-13） */
 .recruit-banner, .cta-foot{
   background:
-    radial-gradient(900px 420px at 50% 124%, rgba(255,69,52,0.38), transparent 70%),
-    linear-gradient(115deg, #3F0D09 0%, #7E1D16 52%, #A3271F 100%);
+    radial-gradient(900px 420px at 50% 124%, rgba(255,69,52,0.26), transparent 70%),
+    linear-gradient(180deg, rgba(20,7,6,0.62), rgba(34,9,7,0.55)),
+    url('assets/night/cta-night.jpg') center 65% / cover no-repeat #1B0806;
 }
 .recruit-banner__btn, .cta-foot__btn{ border-radius: 999px; box-shadow: 0 0 26px rgba(255,255,255,0.12); }
 .cta-foot__btn.is-ghost{ border-color: rgba(255,255,255,0.55); }
@@ -266,6 +267,25 @@ body.no-webgl #blob{ display: none; }
 }
 .biz-card:hover::after, .work-card:hover::after, .office-card:hover::after,
 .voice-card:hover::after, .policy-card:hover::after, .cert-chip:hover::after{ transform: translateX(130%); }
+
+/* 6事業カードの夜アセット（nanobanana 2026-06-13・タイポと重ねる） */
+.biz-card__ph{
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover; background-position: center;
+  transition: opacity .5s ease, transform .9s var(--ease);
+}
+.biz-card__ph::after{
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(125deg, rgba(9,12,18,0.82) 28%, rgba(9,12,18,0.30) 70%, rgba(9,12,18,0.15));
+}
+.biz-card:hover .biz-card__ph{ transform: scale(1.045); }
+.biz-card.is-hero .biz-card__ph::after{
+  background: linear-gradient(115deg, rgba(9,12,18,0.84) 30%, rgba(9,12,18,0.34) 62%, rgba(9,12,18,0.10));
+}
+
+/* about代表ビジュアル＝夜景写真（縦3:4・灯グリフは写真がある時は出さない） */
+.message__visual.ph{ background-size: cover; background-position: center; }
+.message__visual.ph .message__glyph{ display: none; }
 
 /* 6事業カード＝タイポグラフィの夜景（イラスト撤去・新アセット待ちでも成立する顔） */
 .biz-card::before{
