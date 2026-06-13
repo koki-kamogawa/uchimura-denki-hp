@@ -255,8 +255,8 @@ body.no-webgl #blob{ display: none; }
     color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.09); }
   /* 理念文: 長文の強制改行を解除し自然に流す（改行崩れ対策） */
   .statement__sub br{ display: none; }
-  /* スマホは理念の補足文をしっかり濃く（PCは完成済みのため不変） */
-  .statement__sub{ text-wrap: pretty; max-width: 92%; color: rgba(242,239,231,0.96); }
+  /* スマホは理念の補足文を白に（対象確認用・PCは完成済みのため不変） */
+  .statement__sub{ text-wrap: pretty; max-width: 92%; color: #ffffff; }
 }
 
 /* カードのガラス光沢スイープ（hoverで光が走る） */
