@@ -9,15 +9,16 @@ import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 
 const canvas = document.querySelector('.hero-blob');
 const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = matchMedia('(max-width: 900px)').matches;
 
-if (canvas && !matchMedia('(max-width: 900px)').matches) {
+if (canvas) {
   let renderer = null;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   } catch (e) { /* WebGL不可なら出さない */ }
 
   if (renderer) {
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.3;
 
@@ -53,7 +54,7 @@ if (canvas && !matchMedia('(max-width: 900px)').matches) {
     let pair = null; // contact用
 
     if (FORM === 'torus') {
-      const g = smooth(new THREE.TorusGeometry(0.92, 0.34, 64, 140));
+      const g = smooth(new THREE.TorusGeometry(0.92, 0.34, isMobile ? 44 : 64, isMobile ? 100 : 140));
       noiseMesh = new THREE.Mesh(g, chrome());
       noiseGeo = g; noiseBase = g.attributes.position.array.slice(); noiseAmp = 0.09;
       root.add(noiseMesh);
@@ -79,7 +80,7 @@ if (canvas && !matchMedia('(max-width: 900px)').matches) {
       root.add(a); root.add(b);
       pair = [a, b];
     } else { // flame
-      const g = smooth(new THREE.SphereGeometry(1.0, 96, 96));
+      const g = smooth(new THREE.SphereGeometry(1.0, isMobile ? 72 : 96, isMobile ? 72 : 96));
       noiseMesh = new THREE.Mesh(g, chrome());
       noiseMesh.scale.set(0.85, 1.22, 0.85);
       noiseGeo = g; noiseBase = g.attributes.position.array.slice(); noiseAmp = 0.2;
@@ -146,7 +147,8 @@ if (canvas && !matchMedia('(max-width: 900px)').matches) {
         root.rotation.y = t * 0.06;
       }
 
-      root.scale.setScalar(0.7 + 0.3 * ease);
+      // FV級のインパクト（カメラ視野に対し造形を大きく張る）
+      root.scale.setScalar((0.7 + 0.3 * ease) * 1.12);
       renderer.render(scene, camera);
       requestAnimationFrame(tick);
     }

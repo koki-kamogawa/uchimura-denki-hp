@@ -242,11 +242,15 @@ body.no-webgl #blob{ display: none; }
 /* ---------- 7. FVのリッチさを全体へ（2026-06-13 第2弾） ---------- */
 /* 下層ヒーローの液体金属（継続モチーフ・小型） */
 .hero-blob{
-  position: absolute; z-index: 1; right: clamp(0px, 3vw, 90px); top: 54%; transform: translateY(-50%);
-  width: min(32vw, 500px); aspect-ratio: 1/1; opacity: 0; transition: opacity 1.4s ease .2s; pointer-events: none;
+  position: absolute; z-index: 1; right: clamp(-30px, 1.5vw, 70px); top: 52%; transform: translateY(-50%);
+  width: min(44vw, 680px); aspect-ratio: 1/1; opacity: 0; transition: opacity 1.4s ease .2s; pointer-events: none;
 }
 .hero-blob.is-on{ opacity: 1; }
-@media (max-width: 900px){ .hero-blob{ display: none; } }
+/* モバイル: 消さずに見せる（ヒーロー下部・右へブリード） */
+@media (max-width: 900px){
+  .page-hero{ padding-bottom: clamp(210px, 56vw, 300px); }
+  .hero-blob{ top: auto; transform: none; right: -12vw; bottom: -8vw; width: 72vw; max-width: 390px; }
+}
 
 /* カードのガラス光沢スイープ（hoverで光が走る） */
 .biz-card, .work-card, .office-card, .voice-card, .policy-card, .cert-chip{ position: relative; overflow: hidden; }
@@ -265,6 +269,10 @@ body.no-webgl #blob{ display: none; }
   font-size: clamp(44px, 4.4vw, 72px); color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.10);
 }
 .biz-card.is-hero::before{ font-size: clamp(96px, 11vw, 170px); right: 16px; bottom: 6px; -webkit-text-stroke: 1px rgba(242,239,231,0.12); }
+@media (max-width: 900px){
+  .biz-card::before{ font-size: 38px; -webkit-text-stroke: 1px rgba(242,239,231,0.07); }
+  .biz-card.is-hero::before{ font-size: 88px; -webkit-text-stroke: 1px rgba(242,239,231,0.08); }
+}
 .biz-card__no{
   font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1;
   font-size: clamp(30px, 2.6vw, 44px); color: transparent; -webkit-text-stroke: 1px rgba(255,90,70,0.6);
