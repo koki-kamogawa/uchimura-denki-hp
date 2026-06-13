@@ -246,10 +246,15 @@ body.no-webgl #blob{ display: none; }
   width: min(44vw, 680px); aspect-ratio: 1/1; opacity: 0; transition: opacity 1.4s ease .2s; pointer-events: none;
 }
 .hero-blob.is-on{ opacity: 1; }
-/* モバイル: 消さずに見せる（ヒーロー下部・右へブリード） */
+/* モバイル: home FVと同じ構図＝造形をヒーロー下部の中央へ・背後に巨大英字 */
 @media (max-width: 900px){
-  .page-hero{ padding-bottom: clamp(210px, 56vw, 300px); }
-  .hero-blob{ top: auto; transform: none; right: -12vw; bottom: -8vw; width: 72vw; max-width: 390px; }
+  .page-hero{ padding-bottom: clamp(240px, 64vw, 330px); }
+  .hero-blob{ top: auto; right: auto; left: 50%; bottom: -6vw; transform: translateX(-50%); width: 80vw; max-width: 420px; }
+  .page-hero__en{ top: auto; bottom: 5vw; right: -3vw; font-size: 24vw; line-height: .9;
+    color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.10); }
+  /* 理念文: 長文の強制改行を解除し自然に流す（改行崩れ対策） */
+  .statement__sub br{ display: none; }
+  .statement__sub{ text-wrap: pretty; max-width: 92%; }
 }
 
 /* カードのガラス光沢スイープ（hoverで光が走る） */
