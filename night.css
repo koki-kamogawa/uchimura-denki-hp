@@ -114,7 +114,7 @@ body.no-webgl #blob{ display: none; }
   .nfv{ min-height: 100svh; padding-top: 60px; }
   .nfv__copy{ left: 24px; right: 24px; top: 16%; transform: none; max-width: none; }
   .nfv__title{ font-size: clamp(32px, 9.4vw, 44px); }
-  .nfv__lead{ font-size: 12.5px; line-height: 2; margin-top: 20px; }
+  .nfv__lead{ font-size: 12.5px; line-height: 2; margin-top: 20px; color: rgba(242,239,231,0.92); }
   .nfv__en{ right: -5vw; top: auto; bottom: 17%; transform: none; font-size: 21vw; line-height: .9; -webkit-text-stroke: 1px rgba(242,239,231,0.09); }
   #blob{ right: auto; left: 50%; top: auto; bottom: 17%; transform: translateX(-50%); width: 88vw; max-width: 440px; }
   .nfv__hud{ display: none; }
@@ -255,8 +255,9 @@ body.no-webgl #blob{ display: none; }
     color: transparent; -webkit-text-stroke: 1px rgba(242,239,231,0.09); }
   /* 理念文: 長文の強制改行を解除し自然に流す（改行崩れ対策） */
   .statement__sub br{ display: none; }
-  /* スマホは理念の補足文を白に（対象確認用・PCは完成済みのため不変） */
-  .statement__sub{ text-wrap: pretty; max-width: 92%; color: #ffffff; }
+  .statement__sub{ text-wrap: pretty; max-width: 92%; }
+  /* 各ヒーローのリード説明文を濃くして可読性を上げる（スマホのみ・PCは完成済み） */
+  .page-hero__lead{ color: rgba(242,239,231,0.92); }
 }
 
 /* カードのガラス光沢スイープ（hoverで光が走る） */
